@@ -1,0 +1,24 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Container from "../../components/ui/Container.astro";
+import SectionHeader from "../../components/ui/SectionHeader.astro";
+---
+
+<BaseLayout title="Login Admin | Jime Tienda" description="Inicio de sesion administrativo.">
+  <section class="py-16">
+    <Container class="max-w-xl">
+      <SectionHeader eyebrow="Admin" title="Iniciar sesion" description="Formulario visual reservado para conectarse con Supabase Auth." />
+      <form class="mt-8 grid gap-5 rounded border border-black/10 bg-white p-6">
+        <label class="grid gap-2 text-sm font-medium text-brand-ink">
+          Email
+          <input class="rounded border border-black/15 px-3 py-2 text-base outline-none focus:border-brand-coral" type="email" name="email" autocomplete="email" required />
+        </label>
+        <label class="grid gap-2 text-sm font-medium text-brand-ink">
+          Password
+          <input class="rounded border border-black/15 px-3 py-2 text-base outline-none focus:border-brand-coral" type="password" name="password" autocomplete="current-password" required />
+        </label>
+        <button class="w-fit rounded bg-brand-coral px-5 py-3 text-sm font-semibold text-white transition hover:bg-brand-ink" type="submit">Entrar</button>
+      </form>
+    </Container>
+  </section>
+</BaseLayout>

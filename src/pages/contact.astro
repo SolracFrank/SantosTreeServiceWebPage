@@ -1,0 +1,43 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Container from "../components/ui/Container.astro";
+import SectionHeader from "../components/ui/SectionHeader.astro";
+---
+
+<BaseLayout title="Contacto | Jime Tienda" description="Formulario de contacto para Jime Tienda.">
+  <section class="py-16">
+    <Container class="grid gap-10 lg:grid-cols-[0.85fr_1.15fr]">
+      <div>
+        <SectionHeader eyebrow="Contacto" title="Hablemos" description="El formulario queda listo para conectar persistencia con createContactMessage cuando se agregue el manejo de envio." />
+        <div class="mt-8 rounded border border-black/10 bg-white p-6 text-sm leading-6 text-brand-ink/70">
+          <p>Correo: contacto@example.com</p>
+          <p>Telefono: +52 000 000 0000</p>
+          <p>Horario: Lunes a sabado, 9:00 a 18:00</p>
+        </div>
+      </div>
+      <form class="grid gap-5 rounded border border-black/10 bg-white p-6" method="post">
+        <label class="grid gap-2 text-sm font-medium text-brand-ink">
+          Nombre
+          <input class="rounded border border-black/15 px-3 py-2 text-base outline-none focus:border-brand-coral" name="name" autocomplete="name" required />
+        </label>
+        <label class="grid gap-2 text-sm font-medium text-brand-ink">
+          Email
+          <input class="rounded border border-black/15 px-3 py-2 text-base outline-none focus:border-brand-coral" type="email" name="email" autocomplete="email" required />
+        </label>
+        <label class="grid gap-2 text-sm font-medium text-brand-ink">
+          Telefono
+          <input class="rounded border border-black/15 px-3 py-2 text-base outline-none focus:border-brand-coral" name="phone" autocomplete="tel" />
+        </label>
+        <label class="grid gap-2 text-sm font-medium text-brand-ink">
+          Asunto
+          <input class="rounded border border-black/15 px-3 py-2 text-base outline-none focus:border-brand-coral" name="subject" />
+        </label>
+        <label class="grid gap-2 text-sm font-medium text-brand-ink">
+          Mensaje
+          <textarea class="min-h-36 rounded border border-black/15 px-3 py-2 text-base outline-none focus:border-brand-coral" name="message" required></textarea>
+        </label>
+        <button class="w-fit rounded bg-brand-coral px-5 py-3 text-sm font-semibold text-white transition hover:bg-brand-ink" type="submit">Enviar mensaje</button>
+      </form>
+    </Container>
+  </section>
+</BaseLayout>

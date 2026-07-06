@@ -1,0 +1,21 @@
+---
+const navItems = [
+  { href: "/", label: "Inicio" },
+  { href: "/gallery", label: "Galeria" },
+  { href: "/faq", label: "FAQ" },
+  { href: "/contact", label: "Contacto" },
+];
+---
+
+<header class="border-b border-black/10 bg-white/90">
+  <nav class="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8" aria-label="Navegacion principal">
+    <a href="/" class="text-lg font-semibold tracking-normal text-brand-ink">Jime Tienda</a>
+    <ul class="flex flex-wrap gap-3 text-sm font-medium text-brand-ink/75">
+      {navItems.map((item) => (
+        <li>
+          <a class="rounded px-2 py-1 transition hover:bg-brand-mist hover:text-brand-ink" href={item.href}>{item.label}</a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+</header>

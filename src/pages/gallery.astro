@@ -1,0 +1,27 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Container from "../components/ui/Container.astro";
+import SectionHeader from "../components/ui/SectionHeader.astro";
+import { getActiveGalleryImages } from "../lib/supabase/gallery";
+
+const images = await getActiveGalleryImages();
+---
+
+<BaseLayout title="Galeria | Jime Tienda" description="Galeria publica de Jime Tienda.">
+  <section class="py-16">
+    <Container>
+      <SectionHeader eyebrow="Galeria" title="Imagenes destacadas" description="Contenido listo para conectarse con metadata en Postgres y archivos en Supabase Storage." />
+      <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {images.map((image) => (
+          <article class="overflow-hidden rounded border border-black/10 bg-white">
+            <img class="aspect-[4/3] w-full object-cover" src={image.public_url} alt={image.alt_text ?? image.title ?? "Imagen de galeria"} />
+            <div class="p-5">
+              <h2 class="text-lg font-semibold text-brand-ink">{image.title}</h2>
+              {image.description && <p class="mt-2 text-sm leading-6 text-brand-ink/70">{image.description}</p>}
+            </div>
+          </article>
+        ))}
+      </div>
+    </Container>
+  </section>
+</BaseLayout>

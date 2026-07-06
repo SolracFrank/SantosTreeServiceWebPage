@@ -1,0 +1,13 @@
+node_modules
+dist
+.astro
+.git
+.env
+.env.*
+!.env.example
+docs
+AGENTS.md
+package-lock.json
+yarn.lock
+npm-debug.log*
+pnpm-debug.log*
