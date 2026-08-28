@@ -6,16 +6,33 @@ import Footer from "../components/layout/Footer.astro";
 type Props = {
   title?: string;
   description?: string;
+  noindex?: boolean;
+  image?: string;
+  imageAlt?: string;
 };
 
 const {
   title = "Santos Tree Service",
   description = "Tree service company located in Evansville, IN, serving Vanderburgh County and the surrounding areas.",
+  noindex = false,
+  image = "/images/logo_trans_golden.png",
+  imageAlt = "Santos Tree Service logo",
 } = Astro.props;
 
 const isHomePage = Astro.url.pathname === "/";
 const isFaqPage =
   Astro.url.pathname.endsWith("/faq") || Astro.url.pathname.endsWith("/faq/");
+const siteUrl = import.meta.env.PUBLIC_SITE_URL?.trim().replace(/\/+$/, "");
+const canonicalPath =
+  Astro.url.pathname === "/"
+    ? "/"
+    : `${Astro.url.pathname.replace(/\/+$/, "")}/`;
+const toAbsoluteUrl = (path: string) =>
+  siteUrl ? new URL(path, `${siteUrl}/`).toString() : path;
+const canonicalUrl = toAbsoluteUrl(canonicalPath);
+const imageUrl = toAbsoluteUrl(image);
+const robots = noindex ? "noindex, nofollow" : "index, follow";
+
 ---
 
 <!doctype html>
@@ -28,6 +45,34 @@ const isFaqPage =
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <meta name="generator" content={Astro.generator} />
+
+    <meta name="robots" content={robots} />
+
+    <meta name="theme-color" content="#12251f" />
+
+    <link rel="canonical" href={canonicalUrl} />
+
+    <meta property="og:type" content="website" />
+
+    <meta property="og:site_name" content="Santos Tree Service" />
+
+    <meta property="og:title" content={title} />
+
+    <meta property="og:description" content={description} />
+
+    <meta property="og:url" content={canonicalUrl} />
+
+    <meta property="og:image" content={imageUrl} />
+
+    <meta property="og:image:alt" content={imageAlt} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <meta name="twitter:title" content={title} />
+
+    <meta name="twitter:description" content={description} />
+
+    <meta name="twitter:image" content={imageUrl} />
 
     <!-- Modern browsers -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=2" />
@@ -58,6 +103,38 @@ const isFaqPage =
     />
 
     <title>{title}</title>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Santos Tree Service",
+        "description": "Professional tree removal, trimming, stump grinding, cleanup, and firewood service in Evansville, Indiana.",
+        "telephone": "+18126026388",
+        "email": "Eestrada@santostreeservicesevv.com",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "12425 N Green River Rd",
+          "addressLocality": "Evansville",
+          "addressRegion": "IN",
+          "postalCode": "47725",
+          "addressCountry": "US"
+        },
+        "areaServed": [
+          "Evansville",
+          "Vanderburgh County",
+          "Newburgh",
+          "Boonville",
+          "Darmstadt",
+          "Fort Branch",
+          "Poseyville",
+          "Elberfeld",
+          "Rockport",
+          "Vincennes"
+        ],
+        "sameAs": ["https://www.facebook.com/share/1828QSZsce/?mibextid=wwXIfr"]
+      }
+    </script>
 
     <script is:inline>
       document.documentElement.classList.remove("no-js");
