@@ -15,7 +15,7 @@ const [galleryImages, faqs, settings] = await Promise.all([
 
 const business = settings.find((item) => item.key === "business")?.value;
 const businessName =
-  typeof business?.name === "string" ? business.name : "Jime Tienda";
+  typeof business?.name === "string" ? business.name : "Santos Tree Service";
 const tagline =
   typeof business?.tagline === "string"
     ? business.tagline
@@ -105,8 +105,8 @@ const featureCards = [
                 {feature.title}
               </h3>
               <p class="mt-4 text-base leading-7 text-brand-ink/70">
-                Placeholder content ready to be replaced with real data
-                without changing the visual structure.
+                Placeholder content ready to be replaced with real data without
+                changing the visual structure.
               </p>
             </article>
           ))

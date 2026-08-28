@@ -4,18 +4,42 @@ import Container from "../../components/ui/Container.astro";
 import SectionHeader from "../../components/ui/SectionHeader.astro";
 ---
 
-<BaseLayout title="Login Admin | Jime Tienda" description="Inicio de sesion administrativo." noindex>
+<BaseLayout
+  title="Login Admin | Santos Tree Service"
+  description="Inicio de sesion administrativo."
+  noindex
+>
   <section class="py-20 lg:py-24">
     <Container class="max-w-xl">
-      <SectionHeader eyebrow="Admin" title="Iniciar sesion" description="Formulario visual reservado para conectarse con Supabase Auth." />
-      <form class="surface-card-strong-static mt-8 grid gap-5 p-6" data-reveal-card>
+      <SectionHeader
+        eyebrow="Admin"
+        title="Iniciar sesion"
+        description="Formulario visual reservado para conectarse con Supabase Auth."
+      />
+      <form
+        class="surface-card-strong-static mt-8 grid gap-5 p-6"
+        data-reveal-card
+      >
         <label class="grid gap-2 text-sm font-bold text-brand-ink">
           Email
-        <input class="min-h-12 rounded-xl border border-brand-ink/15 bg-white/90 px-4 py-2 text-base transition-[border-color,box-shadow] focus:border-brand-sage focus:ring-4 focus:ring-brand-sage/12" type="email" name="email" autocomplete="email" spellcheck="false" required />
+          <input
+            class="min-h-12 rounded-xl border border-brand-ink/15 bg-white/90 px-4 py-2 text-base transition-[border-color,box-shadow] focus:border-brand-sage focus:ring-4 focus:ring-brand-sage/12"
+            type="email"
+            name="email"
+            autocomplete="email"
+            spellcheck="false"
+            required
+          />
         </label>
         <label class="grid gap-2 text-sm font-bold text-brand-ink">
           Password
-        <input class="min-h-12 rounded-xl border border-brand-ink/15 bg-white/90 px-4 py-2 text-base transition-[border-color,box-shadow] focus:border-brand-sage focus:ring-4 focus:ring-brand-sage/12" type="password" name="password" autocomplete="current-password" required />
+          <input
+            class="min-h-12 rounded-xl border border-brand-ink/15 bg-white/90 px-4 py-2 text-base transition-[border-color,box-shadow] focus:border-brand-sage focus:ring-4 focus:ring-brand-sage/12"
+            type="password"
+            name="password"
+            autocomplete="current-password"
+            required
+          />
         </label>
         <button class="btn-primary w-fit" type="submit">Entrar</button>
       </form>

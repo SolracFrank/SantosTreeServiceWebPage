@@ -1,4 +1,4 @@
-# JimeTiendaInformativa
+# Santos Tree Service
 
 Informational website with Astro, Tailwind CSS, TypeScript, and Supabase.
 
@@ -36,11 +36,11 @@ PUBLIC_SUPABASE_ANON_KEY=
 
 ## Scripts
 
-| Command | Description |
-|---------|-------------|
-| `pnpm dev` | Start dev server (0.0.0.0:4321) |
-| `pnpm build` | Production build |
-| `pnpm preview` | Preview production build |
+| Command        | Description                     |
+| -------------- | ------------------------------- |
+| `pnpm dev`     | Start dev server (0.0.0.0:4321) |
+| `pnpm build`   | Production build                |
+| `pnpm preview` | Preview production build        |
 
 ## Docker
 
