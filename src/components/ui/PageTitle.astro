@@ -1,0 +1,26 @@
+---
+type Props = {
+  title: string;
+};
+
+const { title } = Astro.props;
+---
+
+<section class="relative isolate overflow-hidden border-b border-white/10 bg-brand-ink text-white">
+  <div class="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_12%_20%,rgba(21,128,61,0.38),transparent_35%),radial-gradient(circle_at_90%_10%,rgba(217,119,6,0.22),transparent_28%)]"></div>
+  <div class="pointer-events-none absolute -right-24 -top-32 -z-10 h-80 w-80 rounded-full border border-white/10 bg-white/[0.03]"></div>
+  <div class="mx-auto grid max-w-7xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[1fr_0.65fr] lg:items-end lg:gap-20 lg:px-8 lg:py-24">
+    <div>
+      <p class="mb-6 flex items-center gap-3 text-xs font-black uppercase tracking-[0.2em] text-brand-gold">
+        <span class="h-px w-12 bg-brand-gold" aria-hidden="true"></span>
+        Santos Tree Service
+      </p>
+      <h1 class="max-w-4xl text-balance text-5xl font-black leading-[0.98] tracking-tight text-white sm:text-6xl lg:text-8xl">
+        {title}
+      </h1>
+    </div>
+    <p class="max-w-md border-l border-white/20 pl-5 text-base font-medium leading-7 text-white/70 sm:text-lg sm:leading-8">
+      Professional tree care with safety-first crews, clean job sites, and reliable local service.
+    </p>
+  </div>
+</section>

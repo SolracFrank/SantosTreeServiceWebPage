@@ -9,25 +9,70 @@ type Props = {
 };
 
 const {
-  title = "Jime Tienda Informativa",
-  description = "Sitio informativo con servicios, galeria, preguntas frecuentes y contacto.",
+  title = "Santos Tree Service",
+  description = "Tree service company located in Evansville, IN, serving Vanderburgh County and the surrounding areas.",
 } = Astro.props;
+
+const isHomePage = Astro.url.pathname === "/";
+const isFaqPage = Astro.url.pathname.endsWith("/faq") || Astro.url.pathname.endsWith("/faq/");
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang="en" class="no-js">
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    <script is:inline>
+      document.documentElement.classList.remove("no-js");
+      document.documentElement.classList.add("js");
+    </script>
   </head>
-  <body class="bg-brand-mist text-brand-ink antialiased">
+  <body class="min-h-screen bg-transparent text-brand-ink antialiased">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    {isHomePage && (
+      <div class="home-presentation">
+        <slot name="home-hero" />
+      </div>
+    )}
     <Header />
-    <main>
+    <main id="main-content" class={isFaqPage ? "page-faq" : undefined}>
       <slot />
     </main>
     <Footer />
+    <script is:inline>
+      document.documentElement.classList.add("reveal-ready");
+
+      const revealTargets = document.querySelectorAll("main:not(.page-faq) [data-reveal-card]");
+
+      const revealTarget = (target, index) => {
+        target.style.setProperty("--reveal-delay", `${Math.min(index % 5, 4) * 70}ms`);
+        target.classList.add("is-visible");
+      };
+
+      if ("IntersectionObserver" in window) {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) return;
+
+              const index = Array.prototype.indexOf.call(revealTargets, entry.target);
+              revealTarget(entry.target, index < 0 ? 0 : index);
+              observer.unobserve(entry.target);
+            });
+          },
+          {
+            rootMargin: "0px 0px -8% 0px",
+            threshold: 0.08,
+          }
+        );
+
+        revealTargets.forEach((target) => observer.observe(target));
+      } else {
+        revealTargets.forEach(revealTarget);
+      }
+    </script>
   </body>
 </html>

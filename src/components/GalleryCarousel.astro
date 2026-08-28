@@ -1,0 +1,119 @@
+---
+export type GalleryCarouselImage = {
+  src: string;
+  alt: string;
+  caption: string;
+};
+
+type Props = {
+  images: GalleryCarouselImage[];
+};
+
+const { images } = Astro.props;
+---
+
+<section class="surface-card-strong mx-auto max-w-6xl overflow-hidden p-2.5 sm:p-4" data-gallery-carousel data-reveal-card>
+  <div class="relative overflow-hidden rounded-2xl bg-brand-ink shadow-[0_22px_70px_rgba(15,23,42,0.18)]">
+    <div class="aspect-[4/3] sm:aspect-[16/10] lg:aspect-[16/9]">
+      {images.map((image, index) => (
+        <figure class={`absolute inset-0 transition duration-700 ease-out ${index === 0 ? "opacity-100" : "opacity-0"}`} data-gallery-slide={index} aria-hidden={index === 0 ? "false" : "true"}>
+          <img class="h-full w-full object-cover" src={image.src} alt={image.alt} width="1200" height="675" loading={index === 0 ? "eager" : "lazy"} />
+          <figcaption class="absolute bottom-3 left-3 right-3 rounded-xl border border-white/15 bg-brand-ink/75 px-4 py-3 text-sm font-semibold text-white shadow-[0_18px_50px_rgba(0,0,0,0.24)] backdrop-blur-xl sm:bottom-5 sm:left-5 sm:right-5">
+            {image.caption}
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+
+    <button class="absolute left-3 top-1/2 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-brand-ink/75 text-white shadow-lg backdrop-blur transition-[transform,background-color,border-color] duration-200 hover:-translate-y-[calc(50%+2px)] hover:border-white/40 hover:bg-brand-sage focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white" type="button" aria-label="Previous image" data-gallery-prev>
+      <svg class="h-5 w-5" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="m15 18-6-6 6-6" />
+      </svg>
+    </button>
+    <button class="absolute right-3 top-1/2 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-brand-ink/75 text-white shadow-lg backdrop-blur transition-[transform,background-color,border-color] duration-200 hover:-translate-y-[calc(50%+2px)] hover:border-white/40 hover:bg-brand-sage focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white" type="button" aria-label="Next image" data-gallery-next>
+      <svg class="h-5 w-5" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="m9 18 6-6-6-6" />
+      </svg>
+    </button>
+  </div>
+
+  <div class="mt-5 flex flex-wrap justify-center gap-2" aria-label="Gallery image selection">
+    {images.map((image, index) => (
+      <button class={`relative min-h-11 min-w-11 rounded-full bg-transparent transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-sage ${index === 0 ? "w-9" : "w-3"}`} type="button" aria-label={`Go to image ${index + 1}`} aria-current={index === 0 ? "true" : "false"} title={image.caption} data-gallery-dot={index}>
+        <span class="sr-only">{image.caption}</span>
+      </button>
+    ))}
+  </div>
+
+  <div class="mt-6 grid grid-cols-3 gap-3 sm:grid-cols-4 lg:grid-cols-5">
+    {images.map((image, index) => (
+      <button class={`group min-h-11 overflow-hidden rounded-xl border bg-white shadow-sm transition-[transform,box-shadow,border-color] duration-200 hover:-translate-y-0.5 hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-sage ${index === 0 ? "border-brand-sage ring-2 ring-brand-sage/25" : "border-black/10"}`} type="button" aria-label={`Go to image ${index + 1}`} data-gallery-thumb={index}>
+        <img class="aspect-[4/3] w-full object-cover transition duration-300 group-hover:scale-105" src={image.src} alt={image.alt} width="360" height="270" loading="lazy" />
+      </button>
+    ))}
+  </div>
+</section>
+
+<script>
+  const carousels = document.querySelectorAll<HTMLElement>("[data-gallery-carousel]");
+
+  carousels.forEach((carousel) => {
+    const slides = Array.from(carousel.querySelectorAll<HTMLElement>("[data-gallery-slide]"));
+    const dots = Array.from(carousel.querySelectorAll<HTMLButtonElement>("[data-gallery-dot]"));
+    const thumbs = Array.from(carousel.querySelectorAll<HTMLButtonElement>("[data-gallery-thumb]"));
+    const previousButton = carousel.querySelector<HTMLButtonElement>("[data-gallery-prev]");
+    const nextButton = carousel.querySelector<HTMLButtonElement>("[data-gallery-next]");
+    let activeIndex = 0;
+    let autoplay: number | undefined;
+
+    const setActive = (nextIndex: number) => {
+      activeIndex = (nextIndex + slides.length) % slides.length;
+
+      slides.forEach((slide, index) => {
+        const isActive = index === activeIndex;
+        slide.classList.toggle("opacity-100", isActive);
+        slide.classList.toggle("opacity-0", !isActive);
+        slide.setAttribute("aria-hidden", String(!isActive));
+      });
+
+      dots.forEach((dot, index) => {
+        const isActive = index === activeIndex;
+        dot.classList.toggle("w-9", isActive);
+        dot.classList.toggle("w-3", !isActive);
+        dot.classList.toggle("bg-brand-sage", isActive);
+        dot.classList.toggle("bg-brand-ink/20", !isActive);
+        dot.setAttribute("aria-current", String(isActive));
+      });
+
+      thumbs.forEach((thumb, index) => {
+        const isActive = index === activeIndex;
+        thumb.classList.toggle("border-brand-sage", isActive);
+        thumb.classList.toggle("ring-2", isActive);
+        thumb.classList.toggle("ring-brand-sage/25", isActive);
+        thumb.classList.toggle("border-black/10", !isActive);
+      });
+    };
+
+    const startAutoplay = () => {
+      window.clearInterval(autoplay);
+      autoplay = window.setInterval(() => setActive(activeIndex + 1), 4500);
+    };
+
+    const manuallySetActive = (nextIndex: number) => {
+      setActive(nextIndex);
+      startAutoplay();
+    };
+
+    previousButton?.addEventListener("click", () => manuallySetActive(activeIndex - 1));
+    nextButton?.addEventListener("click", () => manuallySetActive(activeIndex + 1));
+    dots.forEach((dot, index) => dot.addEventListener("click", () => manuallySetActive(index)));
+    thumbs.forEach((thumb, index) => thumb.addEventListener("click", () => manuallySetActive(index)));
+
+    carousel.addEventListener("mouseenter", () => window.clearInterval(autoplay));
+    carousel.addEventListener("mouseleave", startAutoplay);
+    window.addEventListener("beforeunload", () => window.clearInterval(autoplay), { once: true });
+
+    setActive(0);
+    startAutoplay();
+  });
+</script>

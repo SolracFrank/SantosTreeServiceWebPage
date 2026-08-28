@@ -1,21 +1,134 @@
 ---
 const navItems = [
-  { href: "/", label: "Inicio" },
-  { href: "/gallery", label: "Galeria" },
+  { href: "/", label: "Home" },
+  { href: "/about-us", label: "About" },
+  { href: "/services", label: "Services", startsGroup: true },
+  { href: "/gallery", label: "Gallery" },
+  { href: "/testimonials", label: "Testimonials" },
+  { href: "/learn-more", label: "Learn More" },
+  { href: "/contact", label: "Contact" },
   { href: "/faq", label: "FAQ" },
-  { href: "/contact", label: "Contacto" },
 ];
+
+const currentPath = Astro.url.pathname;
 ---
 
-<header class="border-b border-black/10 bg-white/90">
-  <nav class="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8" aria-label="Navegacion principal">
-    <a href="/" class="text-lg font-semibold tracking-normal text-brand-ink">Jime Tienda</a>
-    <ul class="flex flex-wrap gap-3 text-sm font-medium text-brand-ink/75">
-      {navItems.map((item) => (
-        <li>
-          <a class="rounded px-2 py-1 transition hover:bg-brand-mist hover:text-brand-ink" href={item.href}>{item.label}</a>
-        </li>
-      ))}
+<header
+  class="sticky top-0 z-40 border-b border-white/10 shadow-[0_18px_60px_rgba(15,23,42,0.24)] backdrop-blur-2xl backdrop-saturate-150 opacity-[98%]"
+  style="background-color: #203828e0;"
+>
+  <nav
+    class="mx-auto flex max-w-7xl items-center gap-4 px-4 py-3 sm:px-6 lg:gap-6 lg:px-8"
+    aria-label="Main navigation"
+  >
+    <a
+      href="/"
+      class="block h-14 w-28 flex-none rounded-xl transition-transform duration-200 hover:scale-[1.03] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-gold sm:h-16"
+      aria-label="Santos Tree Service home"
+    >
+      <img
+        class="h-full w-full object-contain drop-shadow-[0_12px_24px_rgba(0,0,0,0.28)]"
+        src={currentPath === "/"
+          ? "/images/logo_trans_golden.png"
+          : "/images/logo_trans_golden.png"}
+        alt="Santos Tree Service logo"
+        width="224"
+        height="128"
+      />
+    </a>
+
+    <div
+      class="hidden min-w-0 text-center leading-5 xl:flex xl:w-52 xl:flex-none xl:flex-col"
+    >
+      <a
+        href="/"
+        class="text-sm font-black uppercase tracking-[0.2em] text-white transition-colors duration-200 hover:text-brand-gold sm:text-base"
+        >Santos Tree Service</a
+      >
+      <p
+        class="hidden text-[0.7rem] font-semibold italic text-white/70 sm:block"
+      >
+        Tree removal, trimming, stump grinding & firewood
+      </p>
+    </div>
+
+    <ul
+      class="hidden min-w-0 flex-1 items-center justify-end gap-1 lg:flex"
+      aria-label="Primary navigation links"
+    >
+      {
+        navItems.map((item) => {
+          const isActive =
+            item.href === currentPath ||
+            (item.href !== "/" && currentPath.startsWith(item.href));
+          return (
+            <li>
+              <a
+                class={`inline-flex min-h-11 items-center whitespace-nowrap rounded-lg px-2.5 py-2 text-sm font-bold tracking-[0.02em] transition-[background-color,color,transform] duration-200 hover:-translate-y-0.5 hover:bg-white/10 hover:text-brand-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-gold xl:px-3 xl:text-[0.9rem] ${isActive ? "text-brand-gold" : "text-white/85"}`}
+                href={item.href}
+              >
+                {item.label}
+              </a>
+            </li>
+          );
+        })
+      }
     </ul>
+
+    <details class="group relative ml-auto lg:hidden">
+      <summary
+        class="flex h-12 w-12 cursor-pointer list-none items-center justify-center rounded-xl border border-white/15 bg-white/10 text-white shadow-[0_14px_34px_rgba(0,0,0,0.16)] transition-[transform,background-color,border-color] duration-200 hover:-translate-y-0.5 hover:border-white/30 hover:bg-white/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-gold sm:h-14 sm:w-14"
+        title="Open menu"
+        aria-label="Open menu"
+      >
+        <span class="sr-only">Menu</span>
+        <span
+          class="block h-0.5 w-7 bg-current before:block before:h-0.5 before:w-7 before:-translate-y-2 before:bg-current before:content-[''] after:block after:h-0.5 after:w-7 after:translate-y-1.5 after:bg-current after:content-[''] group-open:hidden"
+        ></span>
+        <span
+          class="relative hidden h-7 w-7 group-open:block"
+          aria-hidden="true"
+        >
+          <span
+            class="absolute left-1/2 top-1/2 h-0.5 w-7 -translate-x-1/2 -translate-y-1/2 rotate-45 rounded-full bg-brand-gold"
+          ></span>
+          <span
+            class="absolute left-1/2 top-1/2 h-0.5 w-7 -translate-x-1/2 -translate-y-1/2 -rotate-45 rounded-full bg-brand-gold"
+          ></span>
+        </span>
+      </summary>
+      <div
+        class="absolute right-0 top-[calc(100%+0.75rem)] w-[min(88vw,24rem)] rounded-2xl border border-white/80 bg-white p-5 shadow-[0_34px_100px_rgba(15,23,42,0.2)] ring-1 ring-black/5 backdrop-blur-xl sm:p-6"
+      >
+        <p
+          class="mb-5 text-center text-xs font-black uppercase tracking-[0.16em] text-brand-ink/60 sm:text-sm"
+        >
+          Santos Tree Service
+        </p>
+        <ul
+          class="grid gap-1.5 text-center text-base font-bold tracking-[0.04em] text-brand-ink/72 sm:text-lg"
+        >
+          {
+            navItems.map((item) => (
+              <li
+                class={
+                  item.startsGroup
+                    ? "mt-7 border-t border-brand-sage/15 pt-5"
+                    : ""
+                }
+              >
+                <a
+                  class="block rounded-xl px-4 py-2.5 transition-[transform,background-color,color] duration-200 hover:-translate-y-0.5 hover:bg-brand-mist hover:text-brand-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-coral"
+                  href={item.href}
+                  title={`Go to ${item.label}`}
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </details>
   </nav>
 </header>

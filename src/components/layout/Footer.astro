@@ -2,9 +2,13 @@
 const year = new Date().getFullYear();
 ---
 
-<footer class="border-t border-black/10 bg-white">
-  <div class="mx-auto flex max-w-6xl flex-col gap-3 px-4 py-8 text-sm text-brand-ink/70 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
-    <p>&copy; {year} Jime Tienda. Todos los derechos reservados.</p>
-    <a class="font-medium text-brand-coral hover:text-brand-ink" href="/admin/login">Admin</a>
+<footer class="border-t border-white/10 bg-brand-ink">
+  <div class="mx-auto grid max-w-7xl gap-8 px-4 py-12 text-sm font-semibold text-white/70 sm:px-6 lg:grid-cols-[1fr_auto_1fr] lg:items-center lg:px-8">
+    <p class="max-w-sm leading-6">&copy; {year} Santos Tree Service. Terms and conditions etc.</p>
+    <div class="rounded-2xl border border-white/10 bg-white/[0.08] px-6 py-5 text-center shadow-[0_18px_60px_rgba(0,0,0,0.18)]">
+      <p class="text-xs font-black uppercase tracking-[0.16em] text-brand-gold">24 Hour Emergency Service</p>
+      <a class="mt-2 block text-2xl font-black text-white transition-colors hover:text-brand-gold" href="tel:+18126026388">(812) 602-6388</a>
+    </div>
+    <a class="w-fit text-brand-gold transition-colors hover:text-white hover:underline lg:justify-self-end" href="/contact">Contact</a>
   </div>
 </footer>

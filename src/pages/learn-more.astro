@@ -1,0 +1,297 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageTitle from "../components/ui/PageTitle.astro";
+import SpecSection from "../components/ui/SpecSection.astro";
+import InlineIcon from "../components/ui/InlineIcon.astro";
+
+type IconName =
+  "tree" | "check" | "phone" | "location" | "pinned" | "fire" | "axe";
+type ContentItem =
+  | {
+      type: "strong";
+      text: string;
+      iconBefore?: IconName;
+      iconAfter?: IconName;
+    }
+  | {
+      type: "p";
+      text: string;
+      iconBefore?: IconName;
+      iconMiddle?: IconName;
+      iconAfter?: IconName;
+    }
+  | { type: "icon"; icon: IconName; text: string };
+type Article = {
+  heading: string;
+  image: string;
+  alt: string;
+  subheading?: string;
+  content: ContentItem[];
+};
+
+const articles: Article[] = [
+  {
+    heading: "Protect Your Property Before & After the Storm",
+    image: "/images/learn-more/learn-more-1.png",
+    alt: "Protect Your Property Before & After the Storm",
+    content: [
+      {
+        type: "strong",
+        text: "Protect Your Property Before & After the Storm",
+        iconBefore: "tree",
+      },
+      {
+        type: "p",
+        text: "Protect Your Property Before & After the Storm",
+        iconAfter: "tree",
+      },
+      {
+        type: "p",
+        text: "Strong winds and severe weather can turn weak or overgrown trees into serious hazards. At Santos Tree Service, we provide preventive tree maintenance to reduce storm damage-and fast, reliable storm damage repair when nature strikes.",
+      },
+      {
+        type: "icon",
+        icon: "check",
+        text: "Preventive tree trimming & maintenance",
+      },
+      {
+        type: "icon",
+        icon: "check",
+        text: "Removal of hazardous or weakened trees",
+      },
+      { type: "icon", icon: "check", text: "Emergency storm damage cleanup" },
+      {
+        type: "icon",
+        icon: "check",
+        text: "Safe, professional, and dependable service",
+      },
+      {
+        type: "p",
+        text: "Routine maintenance helps protect your home, vehicles, and property, while our experienced team is ready to respond when storms leave behind fallen or damaged trees.",
+      },
+      {
+        type: "icon",
+        icon: "location",
+        text: "Evansville, IN & surrounding areas",
+      },
+      { type: "icon", icon: "phone", text: "(812) 602-6388" },
+      {
+        type: "icon",
+        icon: "phone",
+        text: "Call today to schedule preventive tree care or get help after storm damage-your safety comes first.",
+      },
+    ],
+  },
+  {
+    image: "/images/learn-more/learn-more-2.png",
+    alt: "Professional Tree Services You Can Trust",
+    heading: "Keep Your Property Safe & Looking Great",
+    subheading: "Professional Tree Services You Can Trust",
+    content: [],
+  },
+  {
+    heading: "Professional Tree Services You Can Trust",
+    image: "/images/learn-more/learn-more-3.png",
+    alt: "Professional Tree Services You Can Trust",
+    content: [
+      {
+        type: "strong",
+        text: "Professional Tree Services You Can Trust",
+        iconBefore: "tree",
+        iconAfter: "tree",
+      },
+      {
+        type: "p",
+        text: "When it comes to maintaining your property, Santos Tree Service delivers dependable, professional tree care you can count on.",
+      },
+      {
+        type: "p",
+        text: "From routine trimming to complete tree removal, our experienced team is committed to keeping your property safe, clean, and looking its best.",
+      },
+      { type: "icon", icon: "check", text: "Tree removal & trimming" },
+      { type: "icon", icon: "check", text: "Safe, efficient service" },
+      { type: "icon", icon: "check", text: "Experienced, reliable crew" },
+      { type: "icon", icon: "check", text: "Customer-focused workmanship" },
+      {
+        type: "icon",
+        icon: "pinned",
+        text: "Proudly serving the local community",
+      },
+      {
+        type: "icon",
+        icon: "phone",
+        text: "Contact us today to schedule service",
+      },
+    ],
+  },
+  {
+    heading: "Professional Tree Care You Can Trust",
+    image: "/images/learn-more/learn-more-4.png",
+    alt: "Professional Tree Care You Can Trust",
+    content: [
+      { type: "strong", text: "Professional Tree Care You Can Trust" },
+      { type: "p", text: "2/10/2026" },
+      { type: "p", text: "Professional Tree Care You Can Trust" },
+      {
+        type: "p",
+        text: "Looking for expert tree services in Evansville, IN? Santos Tree Service proudly serves Vanderburgh County and surrounding areas with reliable, professional tree care. Since 2018, we've specialized in tree removal, tree trimming, stump grinding, lot clearing, hand tree climbing, and firewood sales, delivering quality workmanship on every job.",
+      },
+      {
+        type: "p",
+        text: "As a BBB-accredited company, we are committed to safety, clean job sites, and customer satisfaction-from small trims to large removals.",
+      },
+      { type: "icon", icon: "location", text: "Evansville, IN" },
+      { type: "icon", icon: "phone", text: "(812) 602-6388" },
+    ],
+  },
+  {
+    heading: "Certified Firewood Now Available",
+    image: "/images/learn-more/learn-more-5.png",
+    alt: "Certified Firewood Now Available",
+    content: [
+      { type: "strong", text: "Certified Firewood Now Available!" },
+      {
+        type: "strong",
+        text: "Certified Firewood Now Available!",
+        iconBefore: "fire",
+        iconAfter: "fire",
+      },
+      {
+        type: "p",
+        text: "Looking for high-quality firewood that burns clean and safe? Santos Tree Service offers certified firewood-perfect for fireplaces, wood stoves, and outdoor fire pits.",
+      },
+      {
+        type: "icon",
+        icon: "check",
+        text: "Kiln-dried for safety and efficiency",
+      },
+      {
+        type: "icon",
+        icon: "check",
+        text: "Certified to meet industry standards",
+      },
+      { type: "icon", icon: "check", text: "Available for pickup or delivery" },
+      {
+        type: "p",
+        text: "Stock up today and enjoy a warm, cozy season with firewood you can trust!",
+      },
+      {
+        type: "icon",
+        icon: "location",
+        text: "12425 N Green River Rd, Evansville, IN",
+      },
+      { type: "icon", icon: "phone", text: "(812) 602-6388" },
+    ],
+  },
+  {
+    heading: "Removal, Griding, and Trimming to Help Your Yard Shine",
+    image: "/images/learn-more/learn-more-6.png",
+    alt: "Removal, Griding, and Trimming to Help Your Yard Shine",
+    content: [
+      {
+        type: "strong",
+        text: "Removal, Griding, and Trimming to Help Your Yard Shine",
+      },
+      {
+        type: "p",
+        text: "Need a reliable tree service? We offer tree removal, stump grinding, and tree trimming to keep your landscape pristine. Contact us for emergency tree service and storm tree removal when you need us most. Call today to see why Vanderburgh county is choosing Santos Tree Service!",
+        iconBefore: "tree",
+        iconMiddle: "phone",
+        iconAfter: "tree",
+      },
+    ],
+  },
+  {
+    heading: "Stock Up on Firewood",
+    image: "/images/learn-more/learn-more-7.png",
+    alt: "Stock Up on Firewood",
+    content: [
+      {
+        type: "strong",
+        text: "Stock Up on Firewood!",
+        iconBefore: "tree",
+        iconAfter: "tree",
+      },
+      {
+        type: "p",
+        text: "Our tree service provides premium firewood just for you! If your trees are trimmed and stumps are removed, we still have services for you! Contact us today to learn more about firewood sales!",
+        iconBefore: "axe",
+        iconMiddle: "phone",
+      },
+    ],
+  },
+  {
+    heading: "Need a Tree Gone? We've Got You Covered",
+    image: "/images/learn-more/learn-more-8.png",
+    alt: "Need a Tree Gone? We've Got You Covered",
+    content: [
+      { type: "strong", text: "Need a Tree Gone? We've Got You Covered!" },
+      {
+        type: "p",
+        text: "Santos Tree Service offers fast, safe, and reliable tree removal services to clear your space and protect your property. Call the pros you can trust to get the job done right!",
+      },
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title="Learn More | Santos Tree Service"
+  description="Learn more about Santos Tree Service tree care, storm cleanup, removal, trimming, and firewood."
+>
+  <PageTitle title="Learn More" />
+
+  {
+    articles.map((article, index) => (
+      <SpecSection class={index % 2 === 1 ? "bg-brand-mist/70" : ""}>
+        <article class="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:gap-16">
+          <div
+            class={`${index % 2 === 1 ? "lg:order-2" : ""} surface-card p-6 sm:p-8 lg:p-10`}
+            data-reveal-card
+          >
+            <h2 class="text-balance text-3xl font-black leading-tight text-brand-ink sm:text-5xl">
+              {article.heading}
+            </h2>
+            {article.subheading && (
+              <h3 class="mt-4 text-2xl font-black text-brand-sage sm:text-3xl">
+                {article.subheading}
+              </h3>
+            )}
+            <div class="mt-7 grid gap-4 text-lg leading-8 text-brand-ink/75">
+              {article.content.map((item) =>
+                item.type === "strong" ? (
+                  <p class="flex flex-wrap items-center gap-2 text-xl font-black text-brand-ink">
+                    {item.iconBefore && <InlineIcon name={item.iconBefore} />}
+                    <strong>{item.text}</strong>
+                    {item.iconAfter && <InlineIcon name={item.iconAfter} />}
+                  </p>
+                ) : item.type === "icon" ? (
+                  <p class="flex gap-3">
+                    <InlineIcon name={item.icon} class="mt-0.5" />
+                    <span>{item.text}</span>
+                  </p>
+                ) : (
+                  <p class="flex flex-wrap items-center gap-2">
+                    {item.iconBefore && <InlineIcon name={item.iconBefore} />}
+                    <span>{item.text}</span>
+                    {item.iconMiddle && <InlineIcon name={item.iconMiddle} />}
+                    {item.iconAfter && <InlineIcon name={item.iconAfter} />}
+                  </p>
+                ),
+              )}
+            </div>
+          </div>
+          <img
+            class="media-frame w-full transition-transform duration-500 hover:scale-[1.015]"
+            data-reveal-card="media"
+            src={article.image}
+            alt={article.alt}
+            width="1000"
+            height="750"
+            loading={index === 0 ? "eager" : "lazy"}
+          />
+        </article>
+      </SpecSection>
+    ))
+  }
+</BaseLayout>
