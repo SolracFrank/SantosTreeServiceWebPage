@@ -14,7 +14,8 @@ const {
 } = Astro.props;
 
 const isHomePage = Astro.url.pathname === "/";
-const isFaqPage = Astro.url.pathname.endsWith("/faq") || Astro.url.pathname.endsWith("/faq/");
+const isFaqPage =
+  Astro.url.pathname.endsWith("/faq") || Astro.url.pathname.endsWith("/faq/");
 ---
 
 <!doctype html>
@@ -24,6 +25,7 @@ const isFaqPage = Astro.url.pathname.endsWith("/faq") || Astro.url.pathname.ends
     <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
     <script is:inline>
       document.documentElement.classList.remove("no-js");
@@ -32,11 +34,13 @@ const isFaqPage = Astro.url.pathname.endsWith("/faq") || Astro.url.pathname.ends
   </head>
   <body class="min-h-screen bg-transparent text-brand-ink antialiased">
     <a class="skip-link" href="#main-content">Skip to content</a>
-    {isHomePage && (
-      <div class="home-presentation">
-        <slot name="home-hero" />
-      </div>
-    )}
+    {
+      isHomePage && (
+        <div class="home-presentation">
+          <slot name="home-hero" />
+        </div>
+      )
+    }
     <Header />
     <main id="main-content" class={isFaqPage ? "page-faq" : undefined}>
       <slot />
@@ -45,10 +49,15 @@ const isFaqPage = Astro.url.pathname.endsWith("/faq") || Astro.url.pathname.ends
     <script is:inline>
       document.documentElement.classList.add("reveal-ready");
 
-      const revealTargets = document.querySelectorAll("main:not(.page-faq) [data-reveal-card]");
+      const revealTargets = document.querySelectorAll(
+        "main:not(.page-faq) [data-reveal-card]",
+      );
 
       const revealTarget = (target, index) => {
-        target.style.setProperty("--reveal-delay", `${Math.min(index % 5, 4) * 70}ms`);
+        target.style.setProperty(
+          "--reveal-delay",
+          `${Math.min(index % 5, 4) * 70}ms`,
+        );
         target.classList.add("is-visible");
       };
 
@@ -58,7 +67,10 @@ const isFaqPage = Astro.url.pathname.endsWith("/faq") || Astro.url.pathname.ends
             entries.forEach((entry) => {
               if (!entry.isIntersecting) return;
 
-              const index = Array.prototype.indexOf.call(revealTargets, entry.target);
+              const index = Array.prototype.indexOf.call(
+                revealTargets,
+                entry.target,
+              );
               revealTarget(entry.target, index < 0 ? 0 : index);
               observer.unobserve(entry.target);
             });
@@ -66,7 +78,7 @@ const isFaqPage = Astro.url.pathname.endsWith("/faq") || Astro.url.pathname.ends
           {
             rootMargin: "0px 0px -8% 0px",
             threshold: 0.08,
-          }
+          },
         );
 
         revealTargets.forEach((target) => observer.observe(target));
