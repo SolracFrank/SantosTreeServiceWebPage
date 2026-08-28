@@ -211,3 +211,16 @@ dist
 # .pnp.*
 
 # End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,astro,node,yarn,git
+
+# Local scripts
+schema.sql
+
+# Local
+
+.agents/
+.pnpm-store/
+docs/
+skills-lock.json
+scripts/test-public-review-insert.mjs
+supabase/.temp/
+supabase/functions/
