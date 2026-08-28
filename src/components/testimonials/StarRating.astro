@@ -1,0 +1,119 @@
+---
+type Props = {
+  name?: string;
+  label?: string;
+  required?: boolean;
+  defaultValue?: number;
+  readOnly?: boolean;
+  value?: number;
+};
+
+const {
+  name = "rating",
+  label = "Rating",
+  required = true,
+  defaultValue,
+  readOnly = false,
+  value = 0,
+} = Astro.props;
+
+const stars = [1, 2, 3, 4, 5];
+const normalizedValue = Math.max(0, Math.min(5, Math.round(value)));
+---
+
+{readOnly ? (
+  <div class="flex items-center gap-1 text-brand-gold" role="img" aria-label={`${normalizedValue} out of 5 stars`}>
+    {stars.map((star) => (
+      <svg class={`h-4 w-4 ${star <= normalizedValue ? "fill-current" : "fill-transparent text-brand-sage/35"}`} viewBox="0 0 24 24" aria-hidden="true" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round">
+        <path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-2.9-5.6 2.9 1.1-6.2L3 9.6l6.2-.9L12 3Z" />
+      </svg>
+    ))}
+    <span class="sr-only">{normalizedValue} out of 5 stars</span>
+  </div>
+) : (
+  <fieldset class="grid gap-3">
+    <legend class="text-sm font-black text-brand-ink">
+      {label}
+      {required && <span aria-hidden="true" class="ml-1 text-brand-coral">*</span>}
+    </legend>
+    <div class="flex items-center gap-1" role="radiogroup" aria-label={label} data-star-rating>
+      {stars.map((star) => (
+        <label data-star-option class="group relative inline-flex min-h-11 min-w-11 cursor-pointer items-center justify-center rounded-lg text-brand-sage/35 transition-[background-color,color,transform] duration-200 hover:-translate-y-0.5 hover:bg-brand-gold/10 hover:text-brand-gold focus-within:outline focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-brand-gold">
+          <input
+            class="peer sr-only"
+            type="radio"
+            name={name}
+            value={star}
+            required={required && star === 1}
+            checked={defaultValue === star}
+          />
+          <svg class="h-7 w-7 fill-transparent stroke-current transition-colors duration-200 peer-checked:fill-brand-gold peer-checked:text-brand-gold" viewBox="0 0 24 24" aria-hidden="true" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round">
+            <path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-2.9-5.6 2.9 1.1-6.2L3 9.6l6.2-.9L12 3Z" />
+          </svg>
+          <span class="sr-only">{star} {star === 1 ? "star" : "stars"}</span>
+        </label>
+      ))}
+    </div>
+  </fieldset>
+)}
+
+<script>
+  const ratingGroups = document.querySelectorAll<HTMLElement>("[data-star-rating]");
+
+  ratingGroups.forEach((group) => {
+    const inputs = group.querySelectorAll<HTMLInputElement>("input[type='radio']");
+
+    let previewRating: number | null = null;
+
+    const syncSelectedStars = () => {
+      const selectedRating = Number(group.querySelector<HTMLInputElement>("input:checked")?.value ?? 0);
+      const activeRating = previewRating ?? selectedRating;
+
+      inputs.forEach((input) => {
+        const option = input.closest<HTMLElement>("[data-star-option]");
+        const icon = option?.querySelector<SVGElement>("svg");
+        const isSelected = Number(input.value) <= activeRating;
+
+        option?.classList.toggle("text-brand-gold", isSelected);
+        option?.classList.toggle("text-brand-sage/35", !isSelected);
+        icon?.classList.toggle("fill-brand-gold", isSelected);
+        icon?.classList.toggle("fill-transparent", !isSelected);
+      });
+    };
+
+    inputs.forEach((input) => {
+      const option = input.closest<HTMLElement>("[data-star-option]");
+
+      input.addEventListener("change", () => {
+        previewRating = null;
+        syncSelectedStars();
+      });
+
+      option?.addEventListener("pointerenter", () => {
+        previewRating = Number(input.value);
+        syncSelectedStars();
+      });
+
+      option?.addEventListener("focus", () => {
+        previewRating = Number(input.value);
+        syncSelectedStars();
+      });
+    });
+
+    group.addEventListener("pointerleave", () => {
+      previewRating = null;
+      syncSelectedStars();
+    });
+
+    group.addEventListener("focusout", (event) => {
+      const nextTarget = event.relatedTarget;
+
+      if (!(nextTarget instanceof Node) || !group.contains(nextTarget)) {
+        previewRating = null;
+        syncSelectedStars();
+      }
+    });
+
+    syncSelectedStars();
+  });
+</script>
