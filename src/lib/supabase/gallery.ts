@@ -1,14 +1,14 @@
-import { hasSupabaseConfig, supabase } from "./client";
+import { createSupabaseTimeout, hasSupabaseConfig, supabase } from "./client";
 import type { GalleryImage } from "./types";
 
 export const placeholderGalleryImages: GalleryImage[] = [
   {
     id: "placeholder-gallery-1",
-    title: "Producto destacado",
-    description: "Imagen de referencia para la futura galeria administrable.",
-    storage_path: "placeholder/producto-destacado.jpg",
-    public_url: "https://images.unsplash.com/photo-1511556820780-d912e42b4980?auto=format&fit=crop&w=900&q=80",
-    alt_text: "Bolsa de compras con productos seleccionados",
+    title: "Tree service work",
+    description: "Recent Santos Tree Service work from the local gallery.",
+    storage_path: "placeholder/tree-service-work.jpg",
+    public_url: "/images/gallery/galeria_1.jpeg",
+    alt_text: "Santos Tree Service completed outdoor tree care work",
     sort_order: 1,
     is_active: true,
     created_at: new Date().toISOString(),
@@ -16,11 +16,11 @@ export const placeholderGalleryImages: GalleryImage[] = [
   },
   {
     id: "placeholder-gallery-2",
-    title: "Detalle de servicio",
-    description: "Espacio preparado para imagenes subidas a Supabase Storage.",
-    storage_path: "placeholder/servicio.jpg",
-    public_url: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=900&q=80",
-    alt_text: "Interior de tienda con productos acomodados",
+    title: "Cleanup and trimming",
+    description: "Space prepared for images uploaded later through Supabase Storage.",
+    storage_path: "placeholder/cleanup-and-trimming.jpg",
+    public_url: "/images/gallery/galeria_2.jpeg",
+    alt_text: "Tree trimming and cleanup work by Santos Tree Service",
     sort_order: 2,
     is_active: true,
     created_at: new Date().toISOString(),
@@ -28,11 +28,11 @@ export const placeholderGalleryImages: GalleryImage[] = [
   },
   {
     id: "placeholder-gallery-3",
-    title: "Atencion personalizada",
-    description: "Contenido temporal mientras se conecta la base de datos.",
-    storage_path: "placeholder/atencion.jpg",
-    public_url: "https://images.unsplash.com/photo-1556742502-ec7c0e9f34b1?auto=format&fit=crop&w=900&q=80",
-    alt_text: "Persona atendiendo una compra en mostrador",
+    title: "Local outdoor service",
+    description: "Temporary content while Supabase data is connected.",
+    storage_path: "placeholder/local-outdoor-service.jpg",
+    public_url: "/images/gallery/galeria_3.jpeg",
+    alt_text: "Outdoor tree service work from Santos Tree Service",
     sort_order: 3,
     is_active: true,
     created_at: new Date().toISOString(),
@@ -45,19 +45,32 @@ export async function getActiveGalleryImages(): Promise<GalleryImage[]> {
     return placeholderGalleryImages;
   }
 
-  const { data, error } = await supabase
-    .from("gallery_images")
-    .select("*")
-    .eq("is_active", true)
-    .order("sort_order", { ascending: true });
+  const timeout = createSupabaseTimeout();
 
-  if (error) {
+  try {
+    const { data, error } = await supabase
+      .from("gallery_images")
+      .select("*")
+      .eq("is_active", true)
+      .order("sort_order", { ascending: true })
+      .abortSignal(timeout.signal);
+
+    if (error) {
+      if (import.meta.env.DEV) {
+        console.warn("No se pudo cargar gallery_images desde Supabase. Usando placeholders.", error.message);
+      }
+
+      return placeholderGalleryImages;
+    }
+
+    return data ?? placeholderGalleryImages;
+  } catch (error) {
     if (import.meta.env.DEV) {
-      console.warn("No se pudo cargar gallery_images desde Supabase. Usando placeholders.", error.message);
+      console.warn("Timeout o error cargando gallery_images desde Supabase. Usando placeholders.", error);
     }
 
     return placeholderGalleryImages;
+  } finally {
+    timeout.clear();
   }
-
-  return data ?? placeholderGalleryImages;
 }

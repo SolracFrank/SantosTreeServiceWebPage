@@ -1,4 +1,4 @@
-import { hasSupabaseConfig, supabase } from "./client";
+import { createSupabaseTimeout, hasSupabaseConfig, supabase } from "./client";
 import type { Faq } from "./types";
 
 export const placeholderFaqs: Faq[] = [
@@ -36,19 +36,32 @@ export async function getActiveFaqs(): Promise<Faq[]> {
     return placeholderFaqs;
   }
 
-  const { data, error } = await supabase
-    .from("faqs")
-    .select("*")
-    .eq("is_active", true)
-    .order("sort_order", { ascending: true });
+  const timeout = createSupabaseTimeout();
 
-  if (error) {
+  try {
+    const { data, error } = await supabase
+      .from("faqs")
+      .select("*")
+      .eq("is_active", true)
+      .order("sort_order", { ascending: true })
+      .abortSignal(timeout.signal);
+
+    if (error) {
+      if (import.meta.env.DEV) {
+        console.warn("No se pudo cargar faqs desde Supabase. Usando placeholders.", error.message);
+      }
+
+      return placeholderFaqs;
+    }
+
+    return data ?? placeholderFaqs;
+  } catch (error) {
     if (import.meta.env.DEV) {
-      console.warn("No se pudo cargar faqs desde Supabase. Usando placeholders.", error.message);
+      console.warn("Timeout o error cargando faqs desde Supabase. Usando placeholders.", error);
     }
 
     return placeholderFaqs;
+  } finally {
+    timeout.clear();
   }
-
-  return data ?? placeholderFaqs;
 }
