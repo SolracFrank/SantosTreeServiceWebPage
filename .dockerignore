@@ -11,3 +11,11 @@ package-lock.json
 yarn.lock
 npm-debug.log*
 pnpm-debug.log*
+.pnpm-store
+.gitignore
+.env
+.env.*
+!.env.example
+Dockerfile*
+compose*.yaml
+docker-compose*.yml

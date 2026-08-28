@@ -5,11 +5,11 @@ export default {
     extend: {
       colors: {
         brand: {
-          ink: "#1d2630",
-          coral: "#e56f51",
-          sage: "#6f8f72",
-          mist: "#f5f7f4",
-          gold: "#c99a3b"
+          ink: "#12251f",
+          coral: "#a64a30",
+          sage: "#3f7455",
+          mist: "#f4f1e8",
+          gold: "#d0a04b"
         }
       },
       fontFamily: {
