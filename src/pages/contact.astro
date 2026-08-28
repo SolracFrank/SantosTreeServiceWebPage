@@ -1,43 +1,830 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import Container from "../components/ui/Container.astro";
-import SectionHeader from "../components/ui/SectionHeader.astro";
+import PageTitle from "../components/ui/PageTitle.astro";
+import SpecSection from "../components/ui/SpecSection.astro";
+
+const hours = [
+  ["Monday", "9:00 AM - 4:00 PM"],
+  ["Tuesday", "9:00 AM - 4:00 PM"],
+  ["Wednesday", "9:00 AM - 4:00 PM"],
+  ["Thursday", "9:00 AM - 4:00 PM"],
+  ["Friday", "9:00 AM - 4:00 PM"],
+  ["Saturday", "By Appointment Only"],
+  ["Sunday", "By Appointment Only"],
+];
 ---
 
-<BaseLayout title="Contacto | Jime Tienda" description="Formulario de contacto para Jime Tienda.">
-  <section class="py-16">
-    <Container class="grid gap-10 lg:grid-cols-[0.85fr_1.15fr]">
-      <div>
-        <SectionHeader eyebrow="Contacto" title="Hablemos" description="El formulario queda listo para conectar persistencia con createContactMessage cuando se agregue el manejo de envio." />
-        <div class="mt-8 rounded border border-black/10 bg-white p-6 text-sm leading-6 text-brand-ink/70">
-          <p>Correo: contacto@example.com</p>
-          <p>Telefono: +52 000 000 0000</p>
-          <p>Horario: Lunes a sabado, 9:00 a 18:00</p>
+<BaseLayout
+  title="Contact | Santos Tree Service"
+  description="Contact information, hours, payment types, and social media for Santos Tree Service."
+>
+  <PageTitle title="Contact" />
+
+  <SpecSection>
+    <div class="grid min-w-0 gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:gap-10">
+      <address
+        class="forest-panel-static min-w-0 p-7 not-italic sm:p-9"
+        data-reveal-card
+      >
+        <p class="eyebrow text-brand-gold">Get in touch</p>
+        <h2 class="mt-3 text-3xl font-black text-white">Santos Tree Service</h2>
+        <div class="mt-7 grid gap-4 text-base leading-7 text-white/82">
+          <p class="flex min-h-11 items-start gap-3">
+            <svg
+              class="mt-1 h-5 w-5 flex-none text-brand-gold"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path
+                d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0Z"
+              ></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+            <span>12425 N Green River Rd<br />Evansville, IN 47725</span>
+          </p>
+          <a
+            class="flex min-h-11 items-start gap-3 font-semibold text-brand-gold transition-colors hover:text-white hover:underline"
+            href="mailto:Eestrada@santostreeservicesevv.com"
+          >
+            <svg
+              class="mt-1 h-5 w-5 flex-none"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+              <path d="m22 7-8.97 5.7a2 2 0 0 1-2.06 0L2 7"></path>
+            </svg>
+            <span class="min-w-0 break-words"
+              >Eestrada@santostreeservicesevv.com</span
+            >
+          </a>
+          <a
+            class="flex min-h-11 items-start gap-3 font-semibold text-brand-gold transition-colors hover:text-white hover:underline"
+            href="tel:+18124706414"
+          >
+            <svg
+              class="mt-1 h-5 w-5 flex-none"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path
+                d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"
+              ></path>
+            </svg>
+            <span>Secondary - (812) 470-6414</span>
+          </a>
+          <a
+            class="flex min-h-11 items-start gap-3 font-semibold text-brand-gold transition-colors hover:text-white hover:underline"
+            href="tel:+18122043033"
+          >
+            <svg
+              class="mt-1 h-5 w-5 flex-none"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path
+                d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"
+              ></path>
+            </svg>
+            <span>Mobile - (812) 204-3033</span>
+          </a>
+        </div>
+      </address>
+
+      <div class="grid gap-5">
+        <section class="surface-card-static p-6 sm:p-7" data-reveal-card>
+          <h2 class="text-xl font-black text-brand-ink">Languages Spoken:</h2>
+          <div class="mt-5 grid grid-cols-2 gap-4">
+            <div
+              class="rounded-xl border border-brand-sage/15 bg-white/70 p-4 text-center shadow-sm"
+              data-reveal-card
+            >
+              <svg
+                class="mx-auto h-9 w-12 rounded shadow-sm"
+                viewBox="0 0 7410 3900"
+                aria-hidden="true"
+              >
+                <rect width="7410" height="3900" fill="#b22234"></rect>
+                <path
+                  d="M0 450h7410M0 1050h7410M0 1650h7410M0 2250h7410M0 2850h7410M0 3450h7410"
+                  stroke="#fff"
+                  stroke-width="300"></path>
+                <rect width="2964" height="2100" fill="#3c3b6e"></rect>
+              </svg>
+              <p class="mt-2 text-sm font-black text-brand-ink">English</p>
+            </div>
+            <div
+              class="rounded-xl border border-brand-sage/15 bg-white/70 p-4 text-center shadow-sm"
+              data-reveal-card
+            >
+              <svg
+                class="mx-auto h-9 w-12 rounded shadow-sm"
+                viewBox="0 0 21 12"
+                aria-hidden="true"
+              >
+                <rect width="7" height="12" fill="#006847"></rect>
+                <rect x="7" width="7" height="12" fill="#fff"></rect>
+                <rect x="14" width="7" height="12" fill="#ce1126"></rect>
+                <circle cx="10.5" cy="6" r="1.1" fill="#c09300"></circle>
+              </svg>
+              <p class="mt-2 text-sm font-black text-brand-ink">Spanish</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="surface-card-static p-6 sm:p-7" data-reveal-card>
+          <div class="flex items-center gap-3">
+            <span
+              class="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-brand-sage/12 text-brand-sage ring-1 ring-brand-sage/20"
+            >
+              <svg
+                class="h-5 w-5"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M12 6v6l4 2"></path>
+              </svg>
+            </span>
+            <h2 class="text-xl font-black text-brand-ink">Hours Available</h2>
+          </div>
+          <p class="mt-3 text-brand-ink/75">24 Hour Emergency Service</p>
+          <p class="text-brand-ink/75">
+            Holiday Hours May Vary. Please Call For Details.
+          </p>
+        </section>
+      </div>
+    </div>
+  </SpecSection>
+
+  <SpecSection class="bg-brand-mist/70">
+    <div class="mx-auto max-w-4xl">
+      <div class="mx-auto max-w-2xl text-center">
+        <p class="eyebrow">Availability</p>
+        <h2
+          class="mt-3 text-balance text-3xl font-black leading-tight text-brand-ink sm:text-5xl"
+        >
+          Hours
+        </h2>
+        <p
+          class="mx-auto mt-4 max-w-72 text-base font-semibold leading-7 text-brand-ink/70 sm:max-w-2xl"
+        >
+          Weekday service hours with weekend appointments available for
+          scheduled tree care.
+        </p>
+      </div>
+
+      <div
+        class="surface-card-strong-static mt-8 overflow-hidden p-3 sm:p-4"
+        data-reveal-card
+      >
+        <div class="forest-panel-static rounded-2xl p-5 sm:p-7">
+          <div
+            class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between"
+          >
+            <div>
+              <p
+                class="text-sm font-black uppercase tracking-[0.18em] text-brand-gold"
+              >
+                Santos Tree Service
+              </p>
+              <h3 class="mt-2 text-2xl font-black text-white">
+                Weekly schedule
+              </h3>
+            </div>
+            <div
+              class="inline-flex w-fit items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm font-black text-white"
+            >
+              <svg
+                class="h-4 w-4 text-brand-gold"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.4"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M12 6v6l4 2"></path>
+              </svg>
+              24 Hour Emergency Service
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-3 grid gap-3">
+          {
+            hours.map(([day, time]) => {
+              const isAppointment = time.includes("Appointment");
+
+              return (
+                <div
+                  class={`grid gap-3 rounded-2xl border p-4 shadow-[0_12px_34px_rgba(15,23,42,0.07)] sm:grid-cols-[1fr_auto] sm:items-center ${isAppointment ? "border-brand-gold/25 bg-brand-gold/10" : "border-brand-sage/18 bg-white/86"}`}
+                  data-reveal-card
+                >
+                  <div class="flex items-center gap-3">
+                    <span
+                      class={`inline-flex h-11 w-11 items-center justify-center rounded-xl ring-1 ${isAppointment ? "bg-brand-gold/15 text-brand-gold ring-brand-gold/25" : "bg-brand-sage/12 text-brand-sage ring-brand-sage/20"}`}
+                      aria-hidden="true"
+                    >
+                      {isAppointment ? (
+                        <svg
+                          class="h-5 w-5"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2.4"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        >
+                          <path d="M8 2v4M16 2v4M3 10h18" />
+                          <rect width="18" height="18" x="3" y="4" rx="2" />
+                          <path d="M9 16h6" />
+                        </svg>
+                      ) : (
+                        <svg
+                          class="h-5 w-5"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2.4"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        >
+                          <path d="M12 2v20" />
+                          <path d="M5 12a7 7 0 0 1 14 0" />
+                          <path d="M4 12c0 4 3 7 8 7s8-3 8-7" />
+                        </svg>
+                      )}
+                    </span>
+                    <div>
+                      <p class="text-lg font-black text-brand-ink">{day}</p>
+                      <p class="text-sm font-semibold text-brand-ink/62">
+                        {isAppointment
+                          ? "Scheduled visits"
+                          : "Regular service hours"}
+                      </p>
+                    </div>
+                  </div>
+                  <p
+                    class={`w-fit rounded-full px-4 py-2 text-sm font-black sm:justify-self-end ${isAppointment ? "bg-white/80 text-brand-ink ring-1 ring-brand-gold/20" : "bg-brand-sage/12 text-brand-sage ring-1 ring-brand-sage/20"}`}
+                  >
+                    {time}
+                  </p>
+                </div>
+              );
+            })
+          }
         </div>
       </div>
-      <form class="grid gap-5 rounded border border-black/10 bg-white p-6" method="post">
-        <label class="grid gap-2 text-sm font-medium text-brand-ink">
-          Nombre
-          <input class="rounded border border-black/15 px-3 py-2 text-base outline-none focus:border-brand-coral" name="name" autocomplete="name" required />
-        </label>
-        <label class="grid gap-2 text-sm font-medium text-brand-ink">
-          Email
-          <input class="rounded border border-black/15 px-3 py-2 text-base outline-none focus:border-brand-coral" type="email" name="email" autocomplete="email" required />
-        </label>
-        <label class="grid gap-2 text-sm font-medium text-brand-ink">
-          Telefono
-          <input class="rounded border border-black/15 px-3 py-2 text-base outline-none focus:border-brand-coral" name="phone" autocomplete="tel" />
-        </label>
-        <label class="grid gap-2 text-sm font-medium text-brand-ink">
-          Asunto
-          <input class="rounded border border-black/15 px-3 py-2 text-base outline-none focus:border-brand-coral" name="subject" />
-        </label>
-        <label class="grid gap-2 text-sm font-medium text-brand-ink">
-          Mensaje
-          <textarea class="min-h-36 rounded border border-black/15 px-3 py-2 text-base outline-none focus:border-brand-coral" name="message" required></textarea>
-        </label>
-        <button class="w-fit rounded bg-brand-coral px-5 py-3 text-sm font-semibold text-white transition hover:bg-brand-ink" type="submit">Enviar mensaje</button>
-      </form>
-    </Container>
-  </section>
+    </div>
+  </SpecSection>
+
+  <SpecSection>
+    <div class="grid gap-6 lg:grid-cols-2">
+      <section class="surface-card-static p-6 sm:p-7" data-reveal-card>
+        <h2 class="text-xl font-black text-brand-ink">
+          Payment Types Accepted:
+        </h2>
+        <div class="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-3">
+          <div
+            class="flex min-h-28 flex-col items-center justify-center gap-3 rounded-lg border border-black/10 bg-white px-3 py-4 text-center shadow-sm ring-1 ring-transparent transition hover:-translate-y-0.5 hover:shadow-md hover:ring-brand-sage/20"
+            data-reveal-card
+          >
+            <svg
+              class="h-10 w-14 text-brand-sage"
+              viewBox="0 0 64 44"
+              aria-hidden="true"
+              fill="none"
+            >
+              <rect
+                x="5"
+                y="8"
+                width="54"
+                height="30"
+                rx="4"
+                fill="#f8faf7"
+                stroke="currentColor"
+                stroke-width="3"></rect>
+              <path
+                d="M15 24l7 7 16-17"
+                stroke="#6f8f72"
+                stroke-width="4"
+                stroke-linecap="round"
+                stroke-linejoin="round"></path>
+              <path
+                d="M42 28h10"
+                stroke="#1d2630"
+                stroke-width="3"
+                stroke-linecap="round"></path>
+            </svg>
+            <span class="text-sm font-black leading-tight text-brand-ink"
+              >Personal Checks</span
+            >
+          </div>
+          <div
+            class="flex min-h-28 flex-col items-center justify-center gap-3 rounded-lg border border-black/10 bg-white px-3 py-4 text-center shadow-sm ring-1 ring-transparent transition hover:-translate-y-0.5 hover:shadow-md hover:ring-brand-sage/20"
+            data-reveal-card
+          >
+            <svg
+              class="h-10 w-24 rounded-md shadow-sm"
+              viewBox="0 0 120 44"
+              role="img"
+              aria-label="Discover"
+            >
+              <rect width="120" height="44" rx="8" fill="#ff6000"></rect>
+              <text
+                x="60"
+                y="28"
+                fill="white"
+                font-family="Arial, sans-serif"
+                font-size="18"
+                font-weight="800"
+                text-anchor="middle">DISCOVER</text
+              >
+            </svg>
+            <span class="text-sm font-black leading-tight text-brand-ink"
+              >Discover</span
+            >
+          </div>
+          <div
+            class="flex min-h-28 flex-col items-center justify-center gap-3 rounded-lg border border-black/10 bg-white px-3 py-4 text-center shadow-sm ring-1 ring-transparent transition hover:-translate-y-0.5 hover:shadow-md hover:ring-brand-sage/20"
+            data-reveal-card
+          >
+            <svg
+              class="h-10 w-24 rounded-md shadow-sm"
+              viewBox="0 0 120 48"
+              role="img"
+              aria-label="American Express"
+            >
+              <rect width="120" height="48" rx="8" fill="#2e77bb"></rect>
+              <path d="M0 34h120v14H0z" fill="#f7941d" opacity="0.9"></path>
+              <text
+                x="60"
+                y="23"
+                fill="white"
+                font-family="Arial, sans-serif"
+                font-size="14"
+                font-weight="900"
+                text-anchor="middle">AMERICAN</text
+              >
+              <text
+                x="60"
+                y="39"
+                fill="white"
+                font-family="Arial, sans-serif"
+                font-size="14"
+                font-weight="900"
+                text-anchor="middle">EXPRESS</text
+              >
+            </svg>
+            <span class="text-sm font-black leading-tight text-brand-ink"
+              >American Express</span
+            >
+          </div>
+          <div
+            class="flex min-h-28 flex-col items-center justify-center gap-3 rounded-lg border border-black/10 bg-white px-3 py-4 text-center shadow-sm ring-1 ring-transparent transition hover:-translate-y-0.5 hover:shadow-md hover:ring-brand-sage/20"
+            data-reveal-card
+          >
+            <svg
+              class="h-10 w-16 text-brand-ink"
+              viewBox="0 0 64 44"
+              aria-hidden="true"
+              fill="none"
+            >
+              <rect
+                x="4"
+                y="8"
+                width="56"
+                height="34"
+                rx="5"
+                fill="#f8faf7"
+                stroke="currentColor"
+                stroke-width="3"></rect>
+              <path d="M4 18h56" stroke="#6f8f72" stroke-width="5"></path>
+              <path
+                d="M14 31h14M36 31h12"
+                stroke="#1d2630"
+                stroke-width="3"
+                stroke-linecap="round"></path>
+            </svg>
+            <span class="text-sm font-black leading-tight text-brand-ink"
+              >Debit Cards</span
+            >
+          </div>
+          <div
+            class="flex min-h-28 flex-col items-center justify-center gap-3 rounded-lg border border-black/10 bg-white px-3 py-4 text-center shadow-sm ring-1 ring-transparent transition hover:-translate-y-0.5 hover:shadow-md hover:ring-brand-sage/20"
+            data-reveal-card
+          >
+            <svg
+              class="h-10 w-20"
+              viewBox="0 0 90 54"
+              role="img"
+              aria-label="MasterCard"
+            >
+              <circle cx="34" cy="27" r="18" fill="#eb001b"></circle>
+              <circle cx="56" cy="27" r="18" fill="#f79e1b"></circle>
+              <path d="M45 14a18 18 0 0 1 0 26 18 18 0 0 1 0-26Z" fill="#ff5f00"
+              ></path>
+            </svg>
+            <span class="text-sm font-black leading-tight text-brand-ink"
+              >MasterCard</span
+            >
+          </div>
+          <div
+            class="flex min-h-28 flex-col items-center justify-center gap-3 rounded-lg border border-black/10 bg-white px-3 py-4 text-center shadow-sm ring-1 ring-transparent transition hover:-translate-y-0.5 hover:shadow-md hover:ring-brand-sage/20"
+            data-reveal-card
+          >
+            <svg
+              class="h-9 w-20"
+              viewBox="0 0 90 36"
+              role="img"
+              aria-label="Visa"
+            >
+              <text
+                x="45"
+                y="26"
+                fill="#1a1f71"
+                font-family="Arial Black, Arial, sans-serif"
+                font-size="28"
+                font-style="italic"
+                font-weight="900"
+                text-anchor="middle">VISA</text
+              >
+            </svg>
+            <span class="text-sm font-black leading-tight text-brand-ink"
+              >Visa</span
+            >
+          </div>
+        </div>
+      </section>
+      <section class="surface-card-static p-6 sm:p-7" data-reveal-card>
+        <h2 class="text-xl font-black text-brand-ink">Social media</h2>
+        <a
+          class="mt-5 inline-flex min-h-11 items-center gap-3 rounded-xl bg-[#1877f2] px-5 py-3 font-black text-white shadow-[0_16px_40px_rgba(24,119,242,0.28)] transition-[transform,background-color] duration-200 hover:-translate-y-0.5 hover:bg-[#0f66d8]"
+          href="https://www.facebook.com/share/1828QSZsce/?mibextid=wwXIfr"
+          aria-label="Contact us on Facebook"
+        >
+          <svg
+            class="h-5 w-5"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+            fill="currentColor"
+          >
+            <path
+              d="M22.675 0h-21.35C.593 0 0 .593 0 1.326v21.348C0 23.407.593 24 1.325 24h11.495v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.464.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.312h3.587l-.467 3.622h-3.12V24h6.114C23.407 24 24 23.407 24 22.674V1.326C24 .593 23.407 0 22.675 0z"
+            ></path>
+          </svg>
+          <span>Contact us</span>
+        </a>
+      </section>
+    </div>
+  </SpecSection>
+
+  <SpecSection class="bg-brand-mist/70">
+    <div class="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
+      <div class="lg:sticky lg:top-28">
+        <p class="eyebrow">Send a message</p>
+        <h2 class="mt-3 text-balance text-3xl font-black leading-tight text-brand-ink sm:text-5xl">
+          Tell us how we can help.
+        </h2>
+        <p class="mt-5 max-w-xl text-base leading-7 text-brand-ink/72 sm:text-lg">
+          Share a few details about your tree care needs and our team will get back to you.
+        </p>
+
+        <div class="mt-7 grid gap-3 text-sm font-semibold text-brand-ink/72">
+          <p class="flex items-start gap-3">
+            <span class="mt-0.5 inline-flex h-8 w-8 flex-none items-center justify-center rounded-lg bg-brand-sage/12 text-brand-sage ring-1 ring-brand-sage/20" aria-hidden="true">✓</span>
+            <span>Clear answers from a local tree care team.</span>
+          </p>
+          <p class="flex items-start gap-3">
+            <span class="mt-0.5 inline-flex h-8 w-8 flex-none items-center justify-center rounded-lg bg-brand-gold/15 text-brand-gold ring-1 ring-brand-gold/25" aria-hidden="true">✓</span>
+            <span>Tell us what your property needs before we call.</span>
+          </p>
+        </div>
+      </div>
+
+      <div class="surface-card-strong p-6 sm:p-8" data-reveal-card>
+        <div data-contact-form-view>
+          <div class="flex flex-col gap-3 border-b border-brand-sage/15 pb-5 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <p class="eyebrow">Contact form</p>
+              <h3 class="mt-2 text-2xl font-black text-brand-ink">Start the conversation</h3>
+            </div>
+            <p class="text-sm font-semibold text-brand-ink/60"><span aria-hidden="true">*</span> Required fields</p>
+          </div>
+
+          <form id="contact-form" class="mt-7 grid gap-5" data-contact-form novalidate>
+            <div class="grid gap-5 sm:grid-cols-2 sm:items-start">
+              <label class="grid min-w-0 gap-2 text-sm font-bold text-brand-ink" for="contact-name">
+                <span class="flex min-h-6 items-center gap-1">Name <span aria-hidden="true" class="text-brand-coral">*</span></span>
+                <input id="contact-name" class="min-h-12 w-full rounded-xl border border-brand-ink/15 bg-white/90 px-4 py-2 text-base transition-[border-color,box-shadow] focus-visible:border-brand-sage focus-visible:ring-4 focus-visible:ring-brand-sage/12" type="text" name="name" maxlength="100" autocomplete="name" aria-describedby="contact-name-help contact-name-error contact-form-error" aria-invalid="false" required />
+                <span id="contact-name-help" class="text-xs font-medium text-brand-ink/55">Up to 100 characters.</span>
+                <span id="contact-name-error" data-contact-field-error="name" hidden role="alert" aria-live="polite" class="hidden text-xs font-semibold text-brand-coral"></span>
+              </label>
+
+              <label class="grid min-w-0 gap-2 text-sm font-bold text-brand-ink" for="contact-email">
+                <span class="flex min-h-6 items-center gap-1">Email <span aria-hidden="true" class="text-brand-coral">*</span></span>
+                <input id="contact-email" class="min-h-12 w-full rounded-xl border border-brand-ink/15 bg-white/90 px-4 py-2 text-base transition-[border-color,box-shadow] focus-visible:border-brand-sage focus-visible:ring-4 focus-visible:ring-brand-sage/12" type="email" name="email" maxlength="100" autocomplete="email" spellcheck="false" aria-describedby="contact-email-help contact-email-error contact-form-error" aria-invalid="false" required />
+                <span id="contact-email-help" class="text-xs font-medium text-brand-ink/55">We’ll only use this to reply.</span>
+                <span id="contact-email-error" data-contact-field-error="email" hidden role="alert" aria-live="polite" class="hidden text-xs font-semibold text-brand-coral"></span>
+              </label>
+            </div>
+
+            <div class="grid gap-5 sm:grid-cols-2 sm:items-start">
+              <label class="grid min-w-0 gap-2 text-sm font-bold text-brand-ink" for="contact-phone">
+                <span class="flex min-h-6 items-center">Phone <span class="ml-1 font-medium text-brand-ink/55">(optional)</span></span>
+                <input id="contact-phone" class="min-h-12 w-full rounded-xl border border-brand-ink/15 bg-white/90 px-4 py-2 text-base transition-[border-color,box-shadow] focus-visible:border-brand-sage focus-visible:ring-4 focus-visible:ring-brand-sage/12" type="tel" name="phone" maxlength="20" autocomplete="tel" inputmode="tel" aria-describedby="contact-phone-help contact-phone-error contact-form-error" aria-invalid="false" />
+                <span id="contact-phone-help" class="text-xs font-medium text-brand-ink/55">Up to 20 characters.</span>
+                <span id="contact-phone-error" data-contact-field-error="phone" hidden role="alert" aria-live="polite" class="hidden text-xs font-semibold text-brand-coral"></span>
+              </label>
+
+              <label class="grid min-w-0 gap-2 text-sm font-bold text-brand-ink" for="contact-subject">
+                <span class="flex min-h-6 items-center">Subject <span class="ml-1 font-medium text-brand-ink/55">(optional)</span></span>
+                <input id="contact-subject" class="min-h-12 w-full rounded-xl border border-brand-ink/15 bg-white/90 px-4 py-2 text-base transition-[border-color,box-shadow] focus-visible:border-brand-sage focus-visible:ring-4 focus-visible:ring-brand-sage/12" type="text" name="subject" maxlength="200" autocomplete="off" aria-describedby="contact-subject-help contact-subject-error contact-form-error" aria-invalid="false" />
+                <span id="contact-subject-help" class="text-xs font-medium text-brand-ink/55">Up to 200 characters.</span>
+                <span id="contact-subject-error" data-contact-field-error="subject" hidden role="alert" aria-live="polite" class="hidden text-xs font-semibold text-brand-coral"></span>
+              </label>
+            </div>
+
+            <label class="grid gap-2 text-sm font-bold text-brand-ink" for="contact-message">
+              <span class="flex min-h-6 items-center gap-1">Message <span aria-hidden="true" class="text-brand-coral">*</span></span>
+              <textarea id="contact-message" class="min-h-40 resize-y rounded-xl border border-brand-ink/15 bg-white/90 px-4 py-3 text-base leading-7 transition-[border-color,box-shadow] focus-visible:border-brand-sage focus-visible:ring-4 focus-visible:ring-brand-sage/12" name="message" minlength="10" maxlength="2000" autocomplete="off" aria-describedby="contact-message-help contact-message-error contact-form-error" aria-invalid="false" required></textarea>
+              <span id="contact-message-help" class="text-xs font-medium text-brand-ink/55">10–2,000 characters.</span>
+              <span id="contact-message-error" data-contact-field-error="message" hidden role="alert" aria-live="polite" class="hidden text-xs font-semibold text-brand-coral"></span>
+            </label>
+
+            <p id="contact-form-error" data-contact-error hidden role="alert" aria-live="assertive" tabindex="-1" class="rounded-xl border border-brand-coral/25 bg-brand-coral/10 px-4 py-3 text-sm font-semibold leading-6 text-brand-ink"></p>
+
+            <button class="btn-primary mt-1 w-full sm:w-fit" type="submit" data-contact-submit aria-busy="false">
+              <span data-contact-submit-label>Send message</span>
+              <span data-contact-spinner hidden class="hidden ml-2 inline-block h-4 w-4 animate-spin rounded-full border-2 border-white/35 border-t-white motion-reduce:animate-none" aria-hidden="true"></span>
+            </button>
+          </form>
+        </div>
+
+        <div data-contact-success hidden tabindex="-1" role="status" aria-live="polite" class="rounded-2xl border border-brand-sage/20 bg-brand-mist/70 p-6 sm:p-8">
+          <span class="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-sage/12 text-xl font-black text-brand-sage ring-1 ring-brand-sage/20" aria-hidden="true">✓</span>
+          <p class="eyebrow mt-6">Message sent</p>
+          <h3 class="mt-3 text-3xl font-black leading-tight text-brand-ink">Thanks for reaching out.</h3>
+          <p class="mt-4 text-base leading-7 text-brand-ink/72">Your message is on its way to our team. We’ll get back to you as soon as possible.</p>
+        </div>
+
+        <div data-contact-unavailable hidden tabindex="-1" role="status" aria-live="polite" class="rounded-2xl border border-brand-gold/25 bg-brand-gold/10 p-6 sm:p-8">
+          <p class="eyebrow">Contact form unavailable</p>
+          <h3 class="mt-3 text-2xl font-black text-brand-ink">Please call or email us directly.</h3>
+          <p class="mt-4 text-base leading-7 text-brand-ink/72">The online form is temporarily unavailable. Use the contact details on this page and our team will still be happy to help.</p>
+        </div>
+      </div>
+    </div>
+  </SpecSection>
+
+  <script>
+    import { hasSupabaseConfig } from "../lib/supabase/client";
+    import {
+      createContactMessage,
+      sendContactEmail,
+    } from "../lib/supabase/contact";
+    import type { ContactFormData } from "../lib/supabase/contact";
+
+    const contactForm = document.querySelector<HTMLFormElement>("[data-contact-form]");
+    const contactFormView = document.querySelector<HTMLElement>("[data-contact-form-view]");
+    const contactSuccess = document.querySelector<HTMLElement>("[data-contact-success]");
+    const contactUnavailable = document.querySelector<HTMLElement>("[data-contact-unavailable]");
+    const contactError = document.querySelector<HTMLElement>("[data-contact-error]");
+    const contactSubmit = document.querySelector<HTMLButtonElement>("[data-contact-submit]");
+    const contactSubmitLabel = document.querySelector<HTMLElement>("[data-contact-submit-label]");
+    const contactSpinner = document.querySelector<HTMLElement>("[data-contact-spinner]");
+    const contactFieldNames = ["name", "email", "phone", "subject", "message"] as const;
+
+    type ContactFieldName = (typeof contactFieldNames)[number];
+
+    const setHidden = (element: HTMLElement | null | undefined, isHidden: boolean) => {
+      if (!element) return;
+
+      element.hidden = isHidden;
+      element.classList.toggle("hidden", isHidden);
+    };
+
+    const getText = (formData: FormData, name: string): string =>
+      formData.get(name)?.toString().trim() ?? "";
+
+    const getOptionalText = (formData: FormData, name: string): string | null => {
+      const value = getText(formData, name);
+
+      return value || null;
+    };
+
+    const getFormInput = (formData: FormData) => ({
+      name: getText(formData, "name"),
+      email: getText(formData, "email").toLowerCase(),
+      phone: getOptionalText(formData, "phone"),
+      subject: getOptionalText(formData, "subject"),
+      message: getText(formData, "message"),
+    });
+
+    const validateContactMessage = (input: ContactFormData) => {
+      const issues: Array<{ path: [ContactFieldName]; message: string }> = [];
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      if (!input.name) {
+        issues.push({ path: ["name"], message: "Name is required." });
+      } else if (input.name.length > 100) {
+        issues.push({
+          path: ["name"],
+          message: "Name must be 100 characters or fewer.",
+        });
+      }
+
+      if (!input.email) {
+        issues.push({ path: ["email"], message: "Email is required." });
+      } else if (input.email.length > 100 || !emailPattern.test(input.email)) {
+        issues.push({
+          path: ["email"],
+          message: "Enter a valid email address.",
+        });
+      }
+
+      if (input.phone && input.phone.length > 20) {
+        issues.push({
+          path: ["phone"],
+          message: "Phone must be 20 characters or fewer.",
+        });
+      }
+
+      if (input.subject && input.subject.length > 200) {
+        issues.push({
+          path: ["subject"],
+          message: "Subject must be 200 characters or fewer.",
+        });
+      }
+
+      if (input.message.length < 10) {
+        issues.push({
+          path: ["message"],
+          message: "Message must contain at least 10 characters.",
+        });
+      } else if (input.message.length > 2000) {
+        issues.push({
+          path: ["message"],
+          message: "Message must be 2,000 characters or fewer.",
+        });
+      }
+
+      return issues.length > 0
+        ? { success: false as const, error: { issues } }
+        : { success: true as const, data: input };
+    };
+
+    const getField = (name: ContactFieldName) =>
+      contactForm?.elements.namedItem(name) as HTMLInputElement | HTMLTextAreaElement | null;
+
+    const setFieldError = (name: ContactFieldName, message: string) => {
+      const field = getField(name);
+      const errorElement = document.querySelector<HTMLElement>(
+        `[data-contact-field-error="${name}"]`,
+      );
+
+      field?.setAttribute("aria-invalid", String(Boolean(message)));
+
+      if (!errorElement) return;
+
+      errorElement.textContent = message;
+      setHidden(errorElement, !message);
+    };
+
+    const renderValidationErrors = (
+      input: ContactFormData,
+      fieldsToRender: readonly ContactFieldName[] = contactFieldNames,
+    ) => {
+      const validation = validateContactMessage(input);
+      const errors = new Map<string, string>();
+
+      if (!validation.success) {
+        for (const issue of validation.error.issues) {
+          const fieldName = String(issue.path[0] ?? "");
+
+          if (!errors.has(fieldName)) {
+            errors.set(fieldName, issue.message);
+          }
+        }
+      }
+
+      for (const fieldName of fieldsToRender) {
+        setFieldError(fieldName, errors.get(fieldName) ?? "");
+      }
+
+      return validation;
+    };
+
+    const showError = (message: string) => {
+      if (!contactError) return;
+
+      contactError.textContent = message;
+      setHidden(contactError, false);
+      contactError.focus();
+    };
+
+    const resetSubmissionState = () => {
+      if (contactSubmit) contactSubmit.disabled = false;
+      contactSubmit?.setAttribute("aria-busy", "false");
+      if (contactSubmitLabel) contactSubmitLabel.textContent = "Send message";
+      setHidden(contactSpinner, true);
+    };
+
+    if (!hasSupabaseConfig) {
+      setHidden(contactFormView, true);
+      setHidden(contactUnavailable, false);
+      contactUnavailable?.focus();
+    } else {
+      contactForm?.addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        if (!contactSubmit) return;
+
+        setHidden(contactError, true);
+
+        const formData = new FormData(contactForm);
+        const validation = renderValidationErrors(getFormInput(formData));
+
+        if (!validation.success) {
+          const firstInvalidField = contactForm.querySelector<HTMLElement>(
+            '[aria-invalid="true"]',
+          );
+
+          firstInvalidField?.focus();
+          return;
+        }
+
+        const message: ContactFormData = validation.data;
+
+        contactSubmit.disabled = true;
+        contactSubmit.setAttribute("aria-busy", "true");
+        if (contactSubmitLabel) contactSubmitLabel.textContent = "Sending…";
+        setHidden(contactSpinner, false);
+
+        try {
+          await createContactMessage(message);
+          void sendContactEmail(message).catch((error) => {
+            console.warn("Contact email notification failed after saving message:", error);
+          });
+
+          setHidden(contactFormView, true);
+          setHidden(contactSuccess, false);
+          contactSuccess?.focus();
+
+          window.setTimeout(() => {
+            contactForm.reset();
+            setHidden(contactSuccess, true);
+            setHidden(contactFormView, false);
+            resetSubmissionState();
+            contactForm?.querySelector<HTMLInputElement>("[name='name']")?.focus();
+          }, 5000);
+        } catch (error) {
+          console.error("Contact form submission failed:", error);
+          resetSubmissionState();
+          showError("We couldn’t send your message. Please try again or call us directly.");
+        }
+      });
+
+      for (const fieldName of contactFieldNames) {
+        const field = getField(fieldName);
+
+        field?.addEventListener("blur", () => {
+          if (contactForm) {
+            renderValidationErrors(
+              getFormInput(new FormData(contactForm)),
+              [fieldName],
+            );
+          }
+        });
+      }
+    }
+  </script>
 </BaseLayout>
