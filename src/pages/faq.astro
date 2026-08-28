@@ -1,24 +1,155 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import Container from "../components/ui/Container.astro";
-import SectionHeader from "../components/ui/SectionHeader.astro";
-import { getActiveFaqs } from "../lib/supabase/faq";
+import PageTitle from "../components/ui/PageTitle.astro";
+import SpecSection from "../components/ui/SpecSection.astro";
 
-const faqs = await getActiveFaqs();
+function renderAnswerLines(lines: string[]) {
+  const result: { type: "text" | "list"; content: string | string[] }[] = [];
+  let currentList: string[] = [];
+
+  for (const line of lines) {
+    if (line.startsWith("- ") || line.startsWith("* ")) {
+      currentList.push(line.slice(2));
+    } else {
+      if (currentList.length > 0) {
+        result.push({ type: "list", content: currentList });
+        currentList = [];
+      }
+      result.push({ type: "text", content: line });
+    }
+  }
+  if (currentList.length > 0) {
+    result.push({ type: "list", content: currentList });
+  }
+  return result;
+}
+
+const faqs = [
+  {
+    question: "Where is Santos Tree Service located and how can I contact you?",
+    answer: [
+      "We're located at 12425 N Green River Rd, Evansville, IN 47725. For quotes or service inquiries, call us at (812) 602-6388.",
+    ],
+  },
+  {
+    question: "What are your business hours?",
+    answer: [
+      "Our standard hours are:",
+      "- Monday–Thursday: 9:00 AM – 4:00 PM",
+      "- Saturday & Sunday: Closed",
+      "Emergency services are available outside regular hours — call for details.",
+    ],
+  },
+  {
+    question: "What services do you offer?",
+    answer: [
+      "We provide a full range of tree care and property maintenance services, including:",
+      "- Tree removal",
+      "- Tree trimming and pruning",
+      "- Stump grinding",
+      "- Storm damage cleanup",
+      "- Land clearing",
+      "- Emergency tree services",
+      "We also offer premium firewood sales for your convenience.",
+    ],
+  },
+  {
+    question: "Do you offer free estimates?",
+    answer: [
+      "Yes! We provide free, no-obligation estimates for all services. Contact us to schedule your consultation.",
+    ],
+  },
+  {
+    question: "Are you licensed and insured?",
+    answer: [
+      "Absolutely. Santos Tree Service is a fully insured and BBB-accredited business with an A+ rating, committed to safety and professional standards.",
+    ],
+  },
+  {
+    question: "How quickly can you respond to emergency calls?",
+    answer: [
+      "We offer fast emergency response for urgent needs such as storm damage or hazardous trees. Call us directly for immediate assistance.",
+    ],
+  },
+  {
+    question: "What areas do you serve?",
+    answer: [
+      "We primarily serve Evansville, IN, and surrounding communities in Vanderburgh County, but we're happy to discuss projects in nearby regions.",
+    ],
+  },
+  {
+    question: "How long have you been in business?",
+    answer: [
+      "Santos Tree Service has been proudly serving the Evansville area since 2018, delivering reliable tree care and property maintenance with a focus on quality and customer satisfaction.",
+    ],
+  },
+];
 ---
 
-<BaseLayout title="FAQ | Jime Tienda" description="Preguntas frecuentes de Jime Tienda.">
-  <section class="py-16">
-    <Container>
-      <SectionHeader eyebrow="FAQ" title="Preguntas frecuentes" description="Respuestas base que luego podran administrarse desde Supabase." />
-      <div class="mt-10 divide-y divide-black/10 rounded border border-black/10 bg-white">
-        {faqs.map((faq) => (
-          <article class="p-6">
-            <h2 class="text-lg font-semibold text-brand-ink">{faq.question}</h2>
-            <p class="mt-3 leading-7 text-brand-ink/70">{faq.answer}</p>
-          </article>
-        ))}
-      </div>
-    </Container>
-  </section>
+<BaseLayout
+  title="FAQ | Santos Tree Service"
+  description="Frequently asked questions for Santos Tree Service."
+>
+  <PageTitle title="FAQ" />
+
+  <SpecSection>
+    <div class="mx-auto grid max-w-4xl gap-4">
+      {
+        faqs.map((faq) => (
+          <details class="surface-card-static group overflow-hidden transition-[transform,box-shadow,border-color] duration-300 open:border-brand-sage/35 hover:-translate-y-0.5 hover:shadow-[0_24px_80px_rgba(15,23,42,0.14)]">
+            <summary class="grid min-h-20 cursor-pointer list-none grid-cols-[1fr_auto] items-center gap-4 p-5 sm:p-6">
+              <h2 class="text-lg font-black leading-snug text-brand-ink sm:text-2xl">
+                <svg
+                  class="mr-3 inline h-6 w-6 align-[-0.18em] text-brand-coral"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="M9.1 9a3 3 0 1 1 5.2 2c-.8.7-1.3 1.1-1.6 1.7-.2.4-.2.8-.2 1.3" />
+                  <path d="M12 17h.01" />
+                </svg>
+                {faq.question}
+              </h2>
+              <span
+                class="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-brand-sage/12 text-brand-sage ring-1 ring-brand-sage/20 transition-transform duration-200 group-open:rotate-45"
+                aria-hidden="true"
+              >
+                <svg
+                  class="h-5 w-5"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                >
+                  <path d="M12 5v14M5 12h14" />
+                </svg>
+              </span>
+            </summary>
+            <div class="border-t border-brand-sage/15 px-5 pb-6 pt-5 sm:px-6">
+              {renderAnswerLines(faq.answer).map((block) =>
+                block.type === "list" ? (
+                  <ul class="mb-4 grid gap-2 pl-4 text-base leading-7 text-brand-ink/75 last:mb-0">
+                    {(block.content as string[]).map((item) => (
+                      <li class="flex items-start gap-3">
+                        <span class="mt-2.5 h-1.5 w-1.5 flex-none rounded-full bg-brand-coral" aria-hidden="true" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p class="mb-4 text-base leading-7 text-brand-ink/75 last:mb-0">{block.content as string}</p>
+                )
+              )}
+            </div>
+          </details>
+        ))
+      }
+    </div>
+  </SpecSection>
 </BaseLayout>

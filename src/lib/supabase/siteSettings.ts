@@ -1,4 +1,4 @@
-import { hasSupabaseConfig, supabase } from "./client";
+import { createSupabaseTimeout, hasSupabaseConfig, supabase } from "./client";
 import type { SiteSettings } from "./types";
 
 export const placeholderSiteSettings: SiteSettings[] = [
@@ -6,10 +6,10 @@ export const placeholderSiteSettings: SiteSettings[] = [
     id: "placeholder-site-settings-1",
     key: "business",
     value: {
-      name: "Jime Tienda",
-      tagline: "Informacion clara para clientes y visitantes.",
-      email: "contacto@example.com",
-      phone: "+52 000 000 0000",
+      name: "Santos Tree Service",
+      tagline: "Professional tree care, trimming, removal, cleanup, and firewood service in Evansville, IN.",
+      email: "Eestrada@santostreeservicesevv.com",
+      phone: "(812) 602-6388",
     },
     created_at: new Date().toISOString(),
     updated_at: null,
@@ -21,18 +21,31 @@ export async function getSiteSettings(): Promise<SiteSettings[]> {
     return placeholderSiteSettings;
   }
 
-  const { data, error } = await supabase
-    .from("site_settings")
-    .select("*")
-    .order("key", { ascending: true });
+  const timeout = createSupabaseTimeout();
 
-  if (error) {
+  try {
+    const { data, error } = await supabase
+      .from("site_settings")
+      .select("*")
+      .order("key", { ascending: true })
+      .abortSignal(timeout.signal);
+
+    if (error) {
+      if (import.meta.env.DEV) {
+        console.warn("No se pudo cargar site_settings desde Supabase. Usando placeholders.", error.message);
+      }
+
+      return placeholderSiteSettings;
+    }
+
+    return data ?? placeholderSiteSettings;
+  } catch (error) {
     if (import.meta.env.DEV) {
-      console.warn("No se pudo cargar site_settings desde Supabase. Usando placeholders.", error.message);
+      console.warn("Timeout o error cargando site_settings desde Supabase. Usando placeholders.", error);
     }
 
     return placeholderSiteSettings;
+  } finally {
+    timeout.clear();
   }
-
-  return data ?? placeholderSiteSettings;
 }
