@@ -80,7 +80,7 @@ const faqs = [
   {
     question: "How long have you been in business?",
     answer: [
-      "Santos Tree Service has been proudly serving the Evansville area since 2018, delivering reliable tree care and property maintenance with a focus on quality and customer satisfaction.",
+      "Santos Tree Service has been proudly serving the Evansville and surrounding areas since 2018. Delivering reliable tree care and property maintenance with focus on quality and customer satisfaction since 2000. ",
     ],
   },
 ];
@@ -137,14 +137,19 @@ const faqs = [
                   <ul class="mb-4 grid gap-2 pl-4 text-base leading-7 text-brand-ink/75 last:mb-0">
                     {(block.content as string[]).map((item) => (
                       <li class="flex items-start gap-3">
-                        <span class="mt-2.5 h-1.5 w-1.5 flex-none rounded-full bg-brand-coral" aria-hidden="true" />
+                        <span
+                          class="mt-2.5 h-1.5 w-1.5 flex-none rounded-full bg-brand-coral"
+                          aria-hidden="true"
+                        />
                         <span>{item}</span>
                       </li>
                     ))}
                   </ul>
                 ) : (
-                  <p class="mb-4 text-base leading-7 text-brand-ink/75 last:mb-0">{block.content as string}</p>
-                )
+                  <p class="mb-4 text-base leading-7 text-brand-ink/75 last:mb-0">
+                    {block.content as string}
+                  </p>
+                ),
               )}
             </div>
           </details>

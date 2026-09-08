@@ -13,8 +13,8 @@ const services = [
     text: "Our leaf clean-up service keeps your property spotless and well-maintained by efficiently removing debris and clutter for a pristine outdoor appearance.",
   },
   {
-    name: "Emergency Services",
-    text: "Available 24/7, our emergency services swiftly address storm damage and hazards, ensuring your property is safe and risks are minimized promptly.",
+    name: "24 Hour Emergency Service",
+    text: "812 204-3033. Available 24/7.",
   },
   {
     name: "Consultation Services",
@@ -22,7 +22,7 @@ const services = [
   },
   {
     name: "Additional Services",
-    text: "Purchase high-quality, seasoned firewood from us, perfect for heating and outdoor events. We ensure reliable supply for year-round enjoyment.",
+    text: "Purchase high-quality, seasoned firewood from us, perfect for heating and outdoor events.",
   },
 ];
 ---
@@ -34,62 +34,142 @@ const services = [
   <PageTitle title="Services" />
 
   <SpecSection>
-    <div class="surface-card-strong grid gap-2 overflow-hidden p-2 lg:grid-cols-[1.15fr_0.85fr]" data-reveal-card>
+    <div
+      class="surface-card-strong grid gap-2 overflow-hidden p-2 lg:grid-cols-[1.15fr_0.85fr]"
+      data-reveal-card
+    >
       <div class="grid gap-2 md:grid-cols-2">
-        {services.map((service, index) => (
-          <article class={`group rounded-xl border border-brand-sage/15 bg-brand-mist/45 p-6 transition-[background-color,transform,border-color,box-shadow] duration-200 hover:-translate-y-1 hover:border-brand-sage/40 hover:bg-white hover:shadow-[0_20px_48px_rgba(18,37,31,0.12)] sm:p-7 ${index === 0 ? "md:col-span-2" : ""}`} data-reveal-card>
-            <div class="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-sage/12 text-sm font-black text-brand-sage ring-1 ring-brand-sage/20 transition-transform duration-200 group-hover:scale-105">
-              {index === 0 && (
-                <svg class="h-6 w-6" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 22V8" />
-                  <path d="M5 12a7 7 0 0 1 14 0" />
-                  <path d="M4 12c0 4 3 7 8 7s8-3 8-7" />
-                  <path d="M8 8c0-3 2-6 4-6s4 3 4 6" />
-                </svg>
-              )}
-              {index === 1 && (
-                <svg class="h-6 w-6" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M11 20A7 7 0 0 1 4 13c0-5 7-10 16-9-1 9-4 16-9 16Z" />
-                  <path d="M4 21c4-6 9-9 16-17" />
-                </svg>
-              )}
-              {index === 2 && (
-                <svg class="h-6 w-6" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="m13 2-9 13h7l-1 7 9-13h-7l1-7Z" />
-                </svg>
-              )}
-              {index === 3 && (
-                <svg class="h-6 w-6" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v8Z" />
-                </svg>
-              )}
-              {index === 4 && (
-                <svg class="h-6 w-6" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M8.5 14.5A4.5 4.5 0 0 0 13 19a5 5 0 0 0 5-5c0-4-3-6-3-10-2 2-3 4-3 6-1.5-1-2-2.5-2-4-2 2-4 4.5-4 8.5Z" />
-                </svg>
-              )}
-            </div>
-            <h2 class="text-2xl font-black text-brand-ink transition-colors duration-200 group-hover:text-brand-sage">{service.name}</h2>
-            <p class="mt-4 text-base leading-7 text-brand-ink/75">{service.text}</p>
-          </article>
-        ))}
+        {
+          services.map((service, index) => (
+            <article
+              class={`group rounded-xl border border-brand-sage/15 bg-brand-mist/45 p-6 transition-[background-color,transform,border-color,box-shadow] duration-200 hover:-translate-y-1 hover:border-brand-sage/40 hover:bg-white hover:shadow-[0_20px_48px_rgba(18,37,31,0.12)] sm:p-7 ${index === 0 ? "md:col-span-2" : ""}`}
+              data-reveal-card
+            >
+              <div class="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-sage/12 text-sm font-black text-brand-sage ring-1 ring-brand-sage/20 transition-transform duration-200 group-hover:scale-105">
+                {index === 0 && (
+                  <svg
+                    class="h-6 w-6"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M12 22V8" />
+                    <path d="M5 12a7 7 0 0 1 14 0" />
+                    <path d="M4 12c0 4 3 7 8 7s8-3 8-7" />
+                    <path d="M8 8c0-3 2-6 4-6s4 3 4 6" />
+                  </svg>
+                )}
+                {index === 1 && (
+                  <svg
+                    class="h-6 w-6"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M11 20A7 7 0 0 1 4 13c0-5 7-10 16-9-1 9-4 16-9 16Z" />
+                    <path d="M4 21c4-6 9-9 16-17" />
+                  </svg>
+                )}
+                {index === 2 && (
+                  <svg
+                    class="h-6 w-6"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="m13 2-9 13h7l-1 7 9-13h-7l1-7Z" />
+                  </svg>
+                )}
+                {index === 3 && (
+                  <svg
+                    class="h-6 w-6"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v8Z" />
+                  </svg>
+                )}
+                {index === 4 && (
+                  <svg
+                    class="h-6 w-6"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M8.5 14.5A4.5 4.5 0 0 0 13 19a5 5 0 0 0 5-5c0-4-3-6-3-10-2 2-3 4-3 6-1.5-1-2-2.5-2-4-2 2-4 4.5-4 8.5Z" />
+                  </svg>
+                )}
+              </div>
+              <h2 class="text-2xl font-black text-brand-ink transition-colors duration-200 group-hover:text-brand-sage">
+                {service.name}
+              </h2>
+              <p class="mt-4 text-base leading-7 text-brand-ink/75">
+                {service.text}
+              </p>
+            </article>
+          ))
+        }
       </div>
-      <div class="forest-panel flex min-h-[28rem] items-center justify-center rounded-xl border-0 p-8 lg:min-h-full lg:p-12" data-reveal-card>
+      <div
+        class="forest-panel flex min-h-[28rem] items-center justify-center rounded-xl border-0 p-8 lg:min-h-full lg:p-12"
+        data-reveal-card
+      >
         <div class="max-w-sm text-center">
           <p class="eyebrow text-brand-gold">Safety first</p>
-          <p class="mt-5 text-balance text-5xl font-black leading-tight tracking-tight text-white sm:text-6xl">Tree care built around safety</p>
-          <p class="mt-6 text-base leading-7 text-white/70">Removal, trimming, storm response, stump grinding, and firewood service shaped for residential properties.</p>
+          <p
+            class="mt-5 text-balance text-5xl font-black leading-tight tracking-tight text-white sm:text-6xl"
+          >
+            Tree care built around safety
+          </p>
+          <p class="mt-6 text-base leading-7 text-white/70">
+            Removal, trimming, storm response, stump grinding, and firewood
+            service shaped for residential properties.
+          </p>
         </div>
       </div>
     </div>
   </SpecSection>
 
   <SpecSection class="bg-brand-mist/70">
-    <div class="surface-card mx-auto max-w-4xl p-8 text-center sm:p-10 lg:p-12" data-reveal-card>
+    <div
+      class="surface-card mx-auto max-w-4xl p-8 text-center sm:p-10 lg:p-12"
+      data-reveal-card
+    >
       <p class="eyebrow">Specialties</p>
-      <h2 class="mt-4 text-balance text-3xl font-black leading-tight text-brand-ink sm:text-5xl">At Santos Tree Services, with seven years of dedicated experience, we specialize in unique and comprehensive tree care solutions.</h2>
+      <h2
+        class="mt-4 text-balance text-3xl font-black leading-tight text-brand-ink sm:text-5xl"
+      >
+        At Santos Tree Services, with 25+ Years of dedicated experience, we
+        specialize in unique and comprehensive tree care solutions.
+      </h2>
       <p class="mx-auto mt-6 max-w-3xl text-lg leading-8 text-brand-ink/75">
-        Our expert team is skilled in hand tree climbing, allowing us to expertly manage hard-to-reach and delicate tasks with precision and care. We also offer firewood retail services, providing high-quality, seasoned firewood to meet your heating and outdoor needs year-round. Trust Santos Tree Services for reliable expertise and service excellence.
+        Our expert team is skilled in hand tree climbing, allowing us to
+        expertly manage hard-to-reach and delicate tasks with precision and
+        care. We also offer firewood retail services, providing high-quality,
+        seasoned firewood to meet your heating and outdoor needs year-round.
+        Trust Santos Tree Services for reliable expertise and service
+        excellence.
       </p>
     </div>
   </SpecSection>
